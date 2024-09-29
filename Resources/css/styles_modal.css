@@ -1,0 +1,70 @@
+:root{
+    --fuentePrincipal: "Reddit Sans Condensed", sans-serif;
+}
+
+/* Estilos para la ventana emergente */
+.modal {
+    display: none; /* Oculta la ventana por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro traslúcido */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    font-size: 1.5rem;
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: .8rem;
+    width: 100rem;
+}
+
+label {
+    font-size: 2rem;
+    display: block;
+    margin-top: 1rem;
+}
+
+input, textarea {
+    width: 100%;
+    height: 5rem;
+    padding: .8rem;
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
+    border-radius: .4rem;
+    border: .1rem solid #ccc;
+    font-size: 1.8rem;
+}
+
+/* Estilos para los botones */
+.toolbar button {
+    margin-right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-footer {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+}
+
+button[type="button"]:hover {
+    background-color: #ccc;
+}

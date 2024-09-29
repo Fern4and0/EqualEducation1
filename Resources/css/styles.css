@@ -1,0 +1,121 @@
+:root{
+    --primario: #0B59DE;
+    --primarioOscuro: #083b94;
+    --primarioClaro: #4379d8;
+
+    --fuentePrincipal: "Reddit Sans Condensed", sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body{
+    font-family: var(--fuentePrincipal);
+    background-color: #f2f2f2;
+    margin: 0;
+}
+
+/* Navegacion */
+.navegacion{
+    background-color: var(--primario);
+    padding: 2.5rem 0;
+}
+.navegacion-secundaria{
+    background-color: var(--primarioClaro);
+    padding: 2rem 38.5rem;
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+}
+.navegacion-secundaria__opcion{
+    text-decoration: none;
+    font-family: var(--fuentePrincipal);
+    font-weight: bold;
+    color: #fff;
+    font-size: 2rem;
+}
+
+/* Barra lateral */
+.contenedor{
+    display: flex;
+    gap: 3rem;
+    margin: 6rem 10rem 0;
+}
+.barra-lateral{
+    width: 30rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    background-color: #dbdbdb;
+}
+.barra-lateral__opcion{
+    text-align: center;
+    padding: 1rem 4rem;
+    text-decoration: none;
+    color: #000;
+    font-size: 2.5rem
+}
+.barra-lateral__opcion:hover{
+    background-color: #c7c7c7;
+    border-radius: 1rem;
+}
+
+/* Contenido principal */
+.contenido{
+    height: auto;
+    width: 100%;
+    padding: 3rem 7rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: #B5B5B5;
+}
+.contenido__crear{
+    width: 15rem;
+    margin-bottom: 5rem;
+    font-family: var(--fuentePrincipal);
+    background-color: var(--primarioClaro);
+    padding: 1.2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 2.5rem;
+}
+.contenido__crear:hover{
+    background-color: var(--primario);
+}
+
+.contenido__actividad{
+    cursor: pointer;
+    font-size: 2.5rem;
+    padding: 2rem 5rem;
+    background-color: #dbdbdb;
+    border: none;
+    border-radius: 1rem;
+}
+.contenido__actividad--opciones{
+    border: none;
+    background-color: #dbdbdb;
+}
+.contenido__actividad--opciones:hover{
+    border-radius: 1.5rem;
+    background-color: #B5B5B5;
+}
+
+
+.contenido__actividad.active .descripcion-act{
+    max-height: 30rem;
+}
+.descripcion-act{
+    font-size: 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s ease;
+}

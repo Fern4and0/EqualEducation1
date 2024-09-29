@@ -1,0 +1,64 @@
+:root{
+    --primario: #0B59DE;
+    --primarioOscuro: #083b94;
+    --primarioClaro: #4379d8;
+    --gris: #c7c7c7;
+    --grisClaro: #dbdbdb;
+    --grisOscuro: #B5B5B5;
+
+    --fuentePrincipal: "Reddit Sans Condensed", sans-serif;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body{
+    font-family: var(--fuentePrincipal);
+    background-color: #f2f2f2;
+    margin: 0;
+}
+
+/* Navegacion */
+.navegacion{
+    background-color: var(--primario);
+    padding: 2.5rem 0;
+}
+.navegacion-secundaria{
+    background-color: var(--primarioClaro);
+    padding: 2rem 38.5rem;
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+}
+.navegacion-secundaria__opcion{
+    text-decoration: none;
+    font-family: var(--fuentePrincipal);
+    font-weight: bold;
+    color: #fff;
+    font-size: 2rem;
+}
+
+/* Contenido principal */
+.contenedor{
+    margin: 0 38.5rem;
+    background-color: #f2f2f2;
+}
+.titulos{
+    padding: 3.5rem 0;
+    font-size: 4rem;
+}
+
+.donaciones{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    font-size: 4rem;
+    padding: 5rem 15rem;
+    background-color: var(--grisClaro);
+    border-radius: 2rem;
+}
