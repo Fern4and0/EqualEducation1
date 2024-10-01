@@ -1,0 +1,78 @@
+.reports-section {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+.reports-section h2 {
+    margin-bottom: 20px;
+}
+
+.reports-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reports-section table, .reports-section th, .reports-section td {
+    border: 1px solid #ddd;
+}
+
+.reports-section th, .reports-section td {
+    padding: 8px;
+    text-align: left;
+}
+
+.reports-section th {
+    background-color: #f2f2f2;
+}
+
+.reports-section tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.reports-section tr:hover {
+    background-color: #f1f1f1;
+}
+
+.add-report-section form {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los elementos se ajusten en diferentes filas si es necesario */
+    justify-content: space-between;
+    gap: 20px; /* Añadir espacio entre los elementos */
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-report-section form input[type="text"], 
+.add-report-section form select,
+.add-report-section form input[type="date"] {
+    flex: 1; /* Ocupa espacio proporcionalmente */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 150px; /* Evitar que se vuelvan demasiado pequeños */
+}
+
+.add-report-section form input[type="submit"] {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    width: auto; /* Deja que el botón tenga un ancho automático */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.add-report-section form input[type="submit"]:hover {
+    opacity: 0.8;
+}

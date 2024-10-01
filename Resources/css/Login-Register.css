@@ -1,0 +1,61 @@
+/* Estilo general para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif; /* Define la fuente de texto */
+    background-color: #f4f4f4; /* Color de fondo de la página */
+    display: flex; /* Utiliza flexbox para el diseño */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 100vh; /* Altura de la página igual a la altura de la ventana del navegador */
+}
+
+/* Estilo para el contenedor principal */
+.container {
+    background-color: white; /* Color de fondo del contenedor */
+    padding: 100px; /* Espacio interno alrededor del contenido */
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra alrededor del contenedor */
+}
+
+/* Estilo para los encabezados h2 */
+h2 {
+    text-align: center; /* Centra el texto del encabezado */
+    margin-bottom: 50px; /* Espacio inferior del encabezado */
+}
+
+/* Estilo para los grupos de formularios */
+.form-group {
+    margin-bottom: 20px; /* Espacio inferior del grupo de formulario */
+}
+
+/* Estilo para las etiquetas de los formularios */
+label {
+    display: block; /* Hace que las etiquetas sean elementos de bloque */
+    margin-bottom: 10px; /* Espacio inferior de las etiquetas */
+}
+
+/* Estilo para los campos de texto, email y contraseña */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* Ancho completo del contenedor padre */
+    padding: 10px; /* Espacio interno de los campos */
+    margin: 10px 0; /* Espacio superior e inferior de los campos */
+    border: 1px solid #ccc; /* Borde de los campos */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Estilo para los botones */
+button {
+    width: 100%; /* Ancho completo del contenedor padre */
+    padding: 10px; /* Espacio interno del botón */
+    background-color: #5cb85c; /* Color de fondo del botón */
+    border: none; /* Sin borde */
+    color: white; /* Color del texto del botón */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+/* Estilo para el botón al pasar el cursor sobre él */
+button:hover {
+    background-color: #4cae4c; /* Color de fondo del botón al pasar el cursor */
+}
