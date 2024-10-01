@@ -1,7 +1,7 @@
 <!-- Footer -->
 <footer class="bg-dark text-white text-center py-4 mt-5">
     <div class="container">
-        <p class="mb-2">&copy; 2024 Desigualdad Educativa</p>
+        <p class="mb-2">&copy; 2024 EqualEducation</p>
         <ul class="list-inline">
             <li class="list-inline-item">
                 <a href="#" class="text-white text-decoration-none">Política de Privacidad</a>
@@ -13,7 +13,7 @@
                 <a href="#" class="text-white text-decoration-none">Contacto</a>
             </li>
         </ul>
-        <p class="small mt-2">Diseñado con ❤️ por Equal Education</p>
+        <p class="small mt-2">Diseñado por EqualEducation</p>
     </div>
 </footer>
 

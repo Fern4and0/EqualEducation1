@@ -11,15 +11,16 @@
 </head>
 <body> 
 
-    <!-- Incluir el header -->
-    <?php include('resources/views/layout/header.php'); ?>
+  <!-- Incluir el header -->
+<?php include('resources/views/layout/header.php'); ?>
 
-    <!-- Header Section -->
-    <header class="header text-center d-flex justify-content-center align-items-center">
-    <div class="header-content text-white">
+<!-- Header Section -->
+<header class="header text-center d-flex justify-content-center align-items-center" style="background-image: url('Public/image/img2.jpeg'); background-size: auto; background-position: center; height: 50vh; ">
+    <div class="header-content text-white">  
         <h1>Un Futuro Mejor a Través de la Educación</h1>
     </div>
 </header>
+
 
 <!-- Main Content -->
 <main class="container my-5">
