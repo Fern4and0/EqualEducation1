@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans+Condensed:wght@200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles_personas.css">
+    <link rel="stylesheet" href="/Resources/css/styles_personas.css">
 </head>
 <body>
-    <nav class="navegacion">
-        <a href="#">nose</a>
-        <a href="#">nose</a>
-    </nav>
+<?php include('layout/header.php') ?>
     <nav class="navegacion-secundaria">
         <a class="navegacion-secundaria__opcion" href="#">Programas</a>
         <a class="navegacion-secundaria__opcion" href="#">Cronogramas</a>
@@ -21,9 +18,9 @@
 
     <main class="contenedor">
         <div class="barra-lateral">
-            <a class="barra-lateral__opcion" href="objetivo.html">Objetivo</a>
-            <a class="barra-lateral__opcion" href="index.html">Actividades</a>
-            <a class="barra-lateral__opcion" href="personas.html">Personas</a>
+            <a class="barra-lateral__opcion" href="objetivo.php">Objetivo</a>
+            <a class="barra-lateral__opcion" href="actividades.php">Actividades</a>
+            <a class="barra-lateral__opcion" href="personas.php">Personas</a>
         </div>
         <div class="contenido">
             <div class="titulos">Voluntarios</div>
@@ -47,6 +44,6 @@
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/js/personas.js"></script>
+    <script src="/Resources/js/personas.js"></script>
 </body>
 </html>

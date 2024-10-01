@@ -6,13 +6,10 @@
     <title>Ventana de Actividades</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans+Condensed:wght@200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles_objetivo.css">
+    <link rel="stylesheet" href="/Resources/css/styles_objetivo.css">
 </head>
 <body>
-    <nav class="navegacion">
-        <a href="#">nose</a>
-        <a href="#">nose</a>
-    </nav>
+<?php include('layout/header.php') ?>
     <nav class="navegacion-secundaria">
         <a class="navegacion-secundaria__opcion" href="#">Programas</a>
         <a class="navegacion-secundaria__opcion" href="#">Cronogramas</a>
@@ -20,9 +17,9 @@
 
     <main class="contenedor">
         <div class="barra-lateral">
-            <a class="barra-lateral__opcion" href="objetivo.html">Objetivo</a>
-            <a class="barra-lateral__opcion" href="index.html">Actividades</a>
-            <a class="barra-lateral__opcion" href="personas.html">Personas</a>
+            <a class="barra-lateral__opcion" href="objetivo.php">Objetivo</a>
+            <a class="barra-lateral__opcion" href="actividades.php">Actividades</a>
+            <a class="barra-lateral__opcion" href="personas.php">Personas</a>
         </div>
         <div class="contenido">
             <div class="contenido-img"></div>
@@ -32,6 +29,5 @@
             </div>
         </div>
     </main>
-    <script src="/js/script.js"></script>
 </body>
 </html>
