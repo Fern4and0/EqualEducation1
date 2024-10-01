@@ -1,4 +1,6 @@
-<!-- header.php -->
+
+</style>
+<!-- header-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold text-uppercase" href="#">Equal Edu</a>
@@ -8,24 +10,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                    <a class="nav-link" href="/DesigualdadEdu/inicio.php">Inicio</a>
+                    <a class="nav-link" href="/EqualEducation/inicio.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Programs</a>
+                    <a class="nav-link" href="#">Programas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About us</a>
+                    <a class="nav-link" href="#">Sobre nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/DesigualdadEdu/Resources/views/login.html">Log in</a>
+                    <a class="nav-link" href="/EqualEducation/Resources/views/login.html">Inicia Sesión</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/DesigualdadEdu/modals.php">Unete</a>
+                    <a class="nav-link" href="Resources/views/modals.php">Unete</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-primary" href="#">Donar</a>
+                    <a* class="btn btn-primary" href="#">Donar</a*>
                 </li>
             </ul>
         </div>
     </div>
+
 </nav>

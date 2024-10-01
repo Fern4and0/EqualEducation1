@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Únete como Voluntario o Beneficiario</title>
-    <link rel="stylesheet" href="resources/css/style_modal.css">>
+    <link rel="stylesheet" href="resources/css/style_modal.css">
     <!-- Link a Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-
 <body>
     <!-- Incluir el header -->
     <?php include('layout/header.php');?>
-    <!-- Sección Hero -->
-    <section class="hero d-flex justify-content-center align-items-center">
-        <div class="text-center">
-            <h1 class="display-4">Únete y Haz la Diferencia</h1>
-            <p class="lead">Conviértete en voluntario o beneficiario y ayuda a reducir la desigualdad educativa.</p>
-            <button class="btn btn-lg cta-button btn-danger" data-bs-toggle="modal" data-bs-target="#formModal">Únete
-                Ahora</button>
-        </div>
-    </section>
+ <!-- Sección Hero -->
+<section class="hero d-flex justify-content-center align-items-center" 
+         style=" background-size: cover; background-position: center;">
+    <div class="text-center">
+        <h1 class="display-4">Únete y Haz la Diferencia</h1>
+        <p class="lead">Conviértete en voluntario o beneficiario y ayuda a reducir la desigualdad educativa.</p>
+        <button class="btn btn-lg cta-button btn-danger" data-bs-toggle="modal" data-bs-target="#formModal">Únete Ahora</button>
+    </div>
+</section>
+
 
     <!-- Sección de Información -->
     <section class="container mt-5">
@@ -135,14 +135,6 @@
                                 <textarea class="form-control" id="situacion_eco" name="situacion_eco" rows="3"
                                     placeholder="Describe tu situación económica" required></textarea>
                             </div>
-
-                            <!-- programa_asig -->
-                            <div class="mb-3">
-                                <label for="programa_asig" class="form-label">Programa Asignado</label>
-                                <input type="number" class="form-control" id="programa_asig" name="programa_asig"
-                                    placeholder="Ingresa el ID del Programa Asignado" required>
-                            </div>
-
                             <!-- fecha_de_ingr -->
                             <div class="mb-3">
                                 <label for="fecha_de_ingr" class="form-label">Fecha de Ingreso</label>
