@@ -6,14 +6,11 @@
     <title>Programas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans+Condensed:wght@200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles_modal_prgm.css">
-    <link rel="stylesheet" href="css/styles_programas.css">
+    <link rel="stylesheet" href="/Resources/css/styles_modal_prgm.css">
+    <link rel="stylesheet" href="/Resources/css/styles_programas.css">
 </head>
 <body>
-    <nav class="navegacion">
-        <a href="#">nose</a>
-        <a href="#">nose</a>
-    </nav>
+<?php include('layout/header.php') ?>
     <nav class="navegacion-secundaria">
         <a class="navegacion-secundaria__opcion" href="#">Programas</a>
         <a class="navegacion-secundaria__opcion" href="#">Cronogramas</a>
@@ -36,28 +33,30 @@
 
         <!-- Modal -->
         <dialog id="modal" class="modal">
-            <div class="modal-content">
+            <form class="modal-content" method="POST">
                 <h2>Crear programa</h2>
-                <label for="titulo">Título del programa</label>
-                <input type="text" id="titulo" placeholder="Título del programa">
+                <label for="nombre">Nombre del programa</label>
+                <input type="text" id="nombre" placeholder="Nombre del programa">
 
-                <label for="fechaInicio">Fecha de inicio</label>
-                <input type="date" id="fechaInicio">
+                <label for="fecha_ini">Fecha de inicio</label>
+                <input type="date" id="fecha_ini">
 
-                <label for="fechaConclusion">Fecha de conclusión</label>
-                <input type="date" id="fechaConclusion">
+                <label for="fecha_fin">Fecha de conclusión</label>
+                <input type="date" id="fecha_fin">
 
+                <!--
                 <label for="archivoImagen">Archivo de imagen</label>
                 <input type="file" id="archivoImagen" accept="image/*">
+                -->
 
                 <!-- Botones de acción -->
                 <div class="modal-actions">
                     <button type="submit" id="createBtn">Crear</button>
                     <button id="cancelBtn">Cancelar</button>
                 </div>
-            </div>
+            </form>
         </dialog>
     </main>
-    <script src="js/scriptPrgm.js"></script>
+    <script src="/Resources/js/programas.js"></script>
 </body>
 </html>
