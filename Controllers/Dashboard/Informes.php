@@ -11,8 +11,12 @@ if (!isset($_SESSION['user_id'])) {
 
 include '../../DB/db.php'; // Incluye la conexión a la base de datos
 
-// Consultar los informes
+// Filtrar los informes por tipo si se ha seleccionado un tipo
+$tipo = isset($_POST['tipo_filtro']) ? $_POST['tipo_filtro'] : '';
 $sql = "SELECT * FROM informes";
+if ($tipo) {
+    $sql .= " WHERE tipo = '$tipo'";
+}
 $result = $conn->query($sql); // Ejecuta la consulta
 
 // Cierra la conexión a la base de datos al final
@@ -40,7 +44,6 @@ $result = $conn->query($sql); // Ejecuta la consulta
         <div class="menu"> <!-- Menú de navegación -->
             <a href="Dashboard.php">Inicio</a> <!-- Enlace a la página de inicio -->
             <a href="usuarios.php">Usuarios</a> <!-- Enlace a la página de usuarios -->
-            <a href="Programas.php">Programas</a> <!-- Enlace a la página de programas -->
             <a href="Informes.php">Informes</a> <!-- Enlace a la página de informes -->
             <a href="Beneficiarios.php">Beneficiarios</a> <!-- Enlace a la página de beneficiarios -->
             <a href="Donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
@@ -54,8 +57,41 @@ $result = $conn->query($sql); // Ejecuta la consulta
             <h1>Informes</h1> <!-- Título de la sección -->
         </div>
 
+        <div class="add-report-section">
+            <h2>Agregar Informe</h2>
+            <form action="AgregarInforme.php" method="POST">
+                <label for="programa_id">Programa ID:</label>
+                <input type="number" id="programa_id" name="programa_id" required>
+
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="anual">Anual</option>
+                    <option value="mensual">Mensual</option>
+                    <option value="semanal">Semanal</option>
+                </select>
+
+                <label for="contenido">Contenido:</label>
+                <input type="text" id="contenido" name="contenido" maxlength="255" required>
+
+                <label for="fecha">Fecha:</label>
+                <input type="datetime-local" id="fecha" name="fecha" required>
+
+                <button type="submit">Agregar Informe</button>
+            </form>
+        </div>
+
         <div class="reports-section">
             <h2>Lista de Informes</h2>
+            <form method="POST" action="Informes.php">
+                <label for="tipo_filtro">Filtrar por tipo:</label>
+                <select id="tipo_filtro" name="tipo_filtro">
+                    <option value="">Todos</option>
+                    <option value="anual" <?php if ($tipo == 'anual') echo 'selected'; ?>>Anual</option>
+                    <option value="mensual" <?php if ($tipo == 'mensual') echo 'selected'; ?>>Mensual</option>
+                    <option value="semanal" <?php if ($tipo == 'semanal') echo 'selected'; ?>>Semanal</option>
+                </select>
+                <button type="submit">Filtrar</button>
+            </form>
             <?php if ($result->num_rows > 0): ?>
                 <table>
                     <thead>
@@ -82,29 +118,6 @@ $result = $conn->query($sql); // Ejecuta la consulta
             <?php else: ?>
                 <p>No se encontraron informes.</p>
             <?php endif; ?>
-        </div>
-
-        <div class="add-report-section">
-            <h2>Agregar Informe</h2>
-            <form action="AgregarInforme.php" method="POST">
-                <label for="programa_id">Programa ID:</label>
-                <input type="number" id="programa_id" name="programa_id" required>
-
-                <label for="tipo">Tipo:</label>
-                <select id="tipo" name="tipo" required>
-                    <option value="anual">Anual</option>
-                    <option value="mensual">Mensual</option>
-                    <option value="semanal">Semanal</option>
-                </select>
-
-                <label for="contenido">Contenido:</label>
-                <input type="text" id="contenido" name="contenido" maxlength="255" required>
-
-                <label for="fecha">Fecha:</label>
-                <input type="datetime-local" id="fecha" name="fecha" required>
-
-                <button type="submit">Agregar Informe</button>
-            </form>
         </div>
 
     </div>

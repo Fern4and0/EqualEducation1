@@ -39,7 +39,6 @@ $conn->close();  // Cierra la conexión a la base de datos
         <div class="menu"> <!-- Menú de navegación -->
             <a href="Dashboard.php">Inicio</a> <!-- Enlace a la página de inicio -->
             <a href="usuarios.php">Usuarios</a> <!-- Enlace a la página de usuarios -->
-            <a href="Programas.php">Programas</a> <!-- Enlace a la página de programas -->
             <a href="Informes.php">Informes</a> <!-- Enlace a la página de informes -->
             <a href="Beneficiarios.php">Beneficiarios</a> <!-- Enlace a la página de beneficiarios -->
             <a href="Donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
