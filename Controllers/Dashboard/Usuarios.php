@@ -30,21 +30,23 @@ $conn->close();  // Cierra la conexión a la base de datos
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios Registrados</title>
-    <link rel="stylesheet" href="../../Resources/css/Style.css">
-    <script src="../../Resources/JS/appdash.js" defer></script> <!-- Incluye el script JS modificado -->
+    <link rel="stylesheet" href="../../Resources/css/Dashboard.css">
+    <script src="../../Resources/JS/Dashboard.js" defer></script> <!-- Incluye el script JS modificado -->
 </head>
 <body>
-    <div class="sidebar" id="sidebar"> <!-- Barra lateral -->
+<div class="sidebar" id="sidebar"> <!-- Barra lateral -->
         <div class="toggle-btn" onclick="toggleSidebar()">&#9776;</div> <!-- Botón para mostrar/ocultar la barra lateral -->
         <div class="menu"> <!-- Menú de navegación -->
             <a href="Dashboard.php">Inicio</a> <!-- Enlace a la página de inicio -->
             <a href="usuarios.php">Usuarios</a> <!-- Enlace a la página de usuarios -->
             <a href="Programas.php">Programas</a> <!-- Enlace a la página de programas -->
-            <a href="donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
+            <a href="Informes.php">Informes</a> <!-- Enlace a la página de informes -->
+            <a href="Beneficiarios.php">Beneficiarios</a> <!-- Enlace a la página de beneficiarios -->
+            <a href="Donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
+            <a href="#" id="solicitudes-btn"><i class="icon-solicitudes"></i> Solicitudes</a> <!-- Enlace para ver solicitudes -->
             <a href="../Login/Logout.php" class="logout-btn">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
         </div>
     </div>
-
     <div class="main-content">
         <div class="header">
             <h1>Usuarios Registrados</h1>

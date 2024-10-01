@@ -38,8 +38,8 @@ $conn->close();
     <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la vista para dispositivos móviles -->
     <title>Donaciones Hechas</title> <!-- Título de la página -->
-    <link rel="stylesheet" href="../../Resources/css/Style.css"> <!-- Incluye el archivo CSS -->
-    <script src="../../Resources/JS/appdash.js" defer></script> <!-- Incluye el script JS modificado -->
+    <link rel="stylesheet" href="../../Resources/css/Dashboard.css"> <!-- Incluye el archivo CSS -->
+    <script src="../../Resources/JS/Dashboard.js" defer></script> <!-- Incluye el script JS modificado -->
 </head>
 <body>
     <div class="sidebar" id="sidebar"> <!-- Barra lateral -->
@@ -48,7 +48,10 @@ $conn->close();
             <a href="Dashboard.php">Inicio</a> <!-- Enlace a la página de inicio -->
             <a href="usuarios.php">Usuarios</a> <!-- Enlace a la página de usuarios -->
             <a href="Programas.php">Programas</a> <!-- Enlace a la página de programas -->
-            <a href="donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
+            <a href="Informes.php">Informes</a> <!-- Enlace a la página de informes -->
+            <a href="Beneficiarios.php">Beneficiarios</a> <!-- Enlace a la página de beneficiarios -->
+            <a href="Donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
+            <a href="#" id="solicitudes-btn"><i class="icon-solicitudes"></i> Solicitudes</a> <!-- Enlace para ver solicitudes -->
             <a href="../Login/Logout.php" class="logout-btn">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
         </div>
     </div>
