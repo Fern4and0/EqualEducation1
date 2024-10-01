@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                    <a class="nav-link" href="/EqualEducation/inicio.php">Inicio</a>
+                    <a class="nav-link" href="/DesigualdadEdu/inicio.php">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Programs</a>
@@ -17,7 +17,7 @@
                     <a class="nav-link" href="#">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/EqualEducation/Resources/views/Login.html">Log in</a>
+                    <a class="nav-link" href="/DesigualdadEdu/Resources/views/Login.html">Log in</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/DesigualdadEdu/modals.php">Unete</a>
