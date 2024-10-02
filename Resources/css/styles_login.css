@@ -1,57 +1,66 @@
 body {
-    font-family: Arial, sans-serif;
-    background: url('../../Public/image/img5.jpeg') no-repeat;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-image: url('../../Public/image/img5.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
 .container {
-    background: transparent;
-    padding: 100px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 320px;
+    width: 100%;
 }
 
 h2 {
-    text-align: center;
-    color: white;
-    margin-bottom: 50px;
-    
-}
-
-.form-group {
+    font-size: 24px;
+    color: #333;
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
-    color: #ffffff;
+.form-group {
+    margin-bottom: 15px;
 }
 
-input[type="text"],
+label {
+    text-align: left;
+    color: #000;
+}
+
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: #999;
 }
 
 button {
     width: 100%;
-    padding: 10px;
-    background-color: #5cb85c00;
-    border-color: white;
-    color: white;
-    border-radius: 4px;
+    padding: 12px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
     cursor: pointer;
-    width: 111%;
 }
 
 button:hover {
-    background-color: #ffffff6e;
+    background-color: #0056b3;
 }
