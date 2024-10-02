@@ -72,75 +72,6 @@ if (isset($_POST['editar_beneficiario'])) {
     $stmt->close();
 }
 
-// Lógica para aceptar solicitudes
-if (isset($_POST['aceptar_solicitud'])) {
-    $solicitud_id = $_POST['solicitud_id'];
-
-    // Obtener la solicitud que se quiere aceptar
-    $sql = "SELECT * FROM solicitudes WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $solicitud_id);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-    
-    if ($resultado->num_rows > 0) {
-        $solicitud = $resultado->fetch_assoc();
-
-        // Insertar los datos de la solicitud en la tabla de beneficiarios
-        $stmtInsert = $conn->prepare("INSERT INTO beneficiarios (nombre, fecha_nacimiento, direccion, nivel_edu, situacion_eco, fecha_de_ingr)
-                                      VALUES (?, ?, ?, ?, ?, ?)");
-        $fecha_ingreso_actual = date('Y-m-d H:i:s'); // Fecha de ingreso actual
-        $stmtInsert->bind_param("ssssss", 
-            $solicitud['nombre'], 
-            $solicitud['fecha_nacimiento'], 
-            $solicitud['direccion'], 
-            $solicitud['nivel_edu'], 
-            $solicitud['situacion_eco'], 
-            $fecha_ingreso_actual // Fecha de ingreso actual
-        );
-        if ($stmtInsert->execute()) {
-            // Eliminar la solicitud aceptada de la tabla de solicitudes
-            $stmtDelete = $conn->prepare("DELETE FROM solicitudes WHERE id = ?");
-            $stmtDelete->bind_param("i", $solicitud_id);
-            $stmtDelete->execute();
-
-            // Mostrar alerta y redirigir
-            echo "<script>
-                    alert('Solicitud aceptada y beneficiario registrado exitosamente');
-                    window.location.href = 'Beneficiarios.php';
-                  </script>";
-            exit();
-        } else {
-            echo "<div class='alert alert-danger'>Error al aceptar la solicitud: {$stmtInsert->error}</div>";
-        }
-
-        $stmtInsert->close();
-        $stmtDelete->close();
-    }
-
-    $stmt->close();
-}
-
-// Lógica para rechazar solicitudes
-if (isset($_POST['rechazar_solicitud'])) {
-    $solicitud_id = $_POST['solicitud_id'];
-
-    // Eliminar la solicitud de la tabla
-    $stmt = $conn->prepare("DELETE FROM solicitudes WHERE id = ?");
-    $stmt->bind_param("i", $solicitud_id);
-    
-    if ($stmt->execute()) {
-        echo "<script>
-                alert('Solicitud rechazada correctamente');
-                window.location.href = 'Beneficiarios.php';
-              </script>";
-    } else {
-        echo "<div class='alert alert-danger'>Error al rechazar la solicitud</div>";
-    }
-
-    $stmt->close();
-}
-
 // Lógica para eliminar beneficiarios
 if (isset($_POST['eliminar_beneficiario'])) {
     $beneficiario_id = $_POST['beneficiario_id'];
@@ -171,18 +102,6 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Consulta para obtener las solicitudes de beneficios
-$solicitudes = [];
-$sqlSolicitudes = "SELECT * FROM solicitudes";
-$resultSolicitudes = $conn->query($sqlSolicitudes);
-
-if ($resultSolicitudes->num_rows > 0) {
-    // Almacena las solicitudes en el array
-    while($row = $resultSolicitudes->fetch_assoc()) {
-        $solicitudes[] = $row;
-    }
-}
-
 // Cierra la conexión a la base de datos
 $conn->close();
 ?>
@@ -204,7 +123,6 @@ $conn->close();
             <a href="Informes.php">Informes</a> <!-- Enlace a la página de informes -->
             <a href="Beneficiarios.php">Beneficiarios</a> <!-- Enlace a la página de beneficiarios -->
             <a href="Donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
-            <a href="#" id="solicitudes-btn"><i class="icon-solicitudes"></i> Solicitudes</a> <!-- Enlace para ver solicitudes -->
             <a href="../Login/Logout.php" class="logout-btn">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
         </div>
     </div>
@@ -259,57 +177,6 @@ $conn->close();
         </div>
     </div>
 
-    <!-- Modal de Solicitudes -->
-    <div id="solicitudes-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Solicitudes de Beneficios</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Dirección</th>
-                        <th>Nivel Educativo</th>
-                        <th>Situación Económica</th>
-                        <th>Fecha de Solicitud</th> <!-- Cambiado de "Fecha de Ingreso" a "Fecha de Solicitud" -->
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (count($solicitudes) > 0): ?> <!-- Verifica si hay solicitudes -->
-                        <?php foreach ($solicitudes as $solicitud): ?> <!-- Recorre cada solicitud -->
-                            <tr>
-                                <td><?= $solicitud['id']; ?></td> <!-- Muestra el ID de la solicitud -->
-                                <td><?= htmlspecialchars($solicitud['nombre']); ?></td> <!-- Muestra el nombre del solicitante -->
-                                <td><?= date('d/m/Y', strtotime($solicitud['fecha_nacimiento'])); ?></td> <!-- Muestra la fecha de nacimiento -->
-                                <td><?= htmlspecialchars($solicitud['direccion']); ?></td> <!-- Muestra la dirección -->
-                                <td><?= htmlspecialchars($solicitud['nivel_edu']); ?></td> <!-- Muestra el nivel educativo -->
-                                <td><?= htmlspecialchars($solicitud['situacion_eco']); ?></td> <!-- Muestra la situación económica -->
-                                <td><?= isset($solicitud['fecha_solicitud']) ? date('d/m/Y', strtotime($solicitud['fecha_solicitud'])) : 'N/A'; ?></td> <!-- Muestra la fecha de solicitud -->
-                                <td>
-                                    <form method="post" style="display:inline;">
-                                        <input type="hidden" name="solicitud_id" value="<?= $solicitud['id']; ?>">
-                                        <button type="submit" name="aceptar_solicitud" class="accept-btn">Aceptar</button> <!-- Botón para aceptar -->
-                                    </form>
-                                    <form method="post" style="display:inline;">
-                                        <input type="hidden" name="solicitud_id" value="<?= $solicitud['id']; ?>">
-                                        <button type="submit" name="rechazar_solicitud" class="reject-btn">Rechazar</button> <!-- Botón para rechazar -->
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="8">No hay solicitudes de beneficios.</td> <!-- Cambiado de "4" a "8" -->
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
     <!-- Modal para editar beneficiario -->
     <div id="editModal" class="modal">
         <div class="modal-content">
@@ -338,28 +205,6 @@ $conn->close();
     </div>
 
     <script>
-        // Obtener elementos del DOM
-        const solicitudesBtn = document.getElementById('solicitudes-btn');
-        const solicitudesModal = document.getElementById('solicitudes-modal');
-        const closeBtn = document.querySelector('.close-btn');
-
-        // Mostrar el modal cuando se hace clic en el botón de solicitudes
-        solicitudesBtn.addEventListener('click', () => {
-            solicitudesModal.style.display = 'block';
-        });
-
-        // Cerrar el modal cuando se hace clic en el botón de cerrar
-        closeBtn.addEventListener('click', () => {
-            solicitudesModal.style.display = 'none';
-        });
-
-        // Cerrar el modal cuando se hace clic fuera del contenido del modal
-        window.addEventListener('click', (event) => {
-            if (event.target == solicitudesModal) {
-                solicitudesModal.style.display = 'none';
-            }
-        });
-
         // Función para abrir el modal de edición y llenar los campos con los datos del beneficiario
         function openEditModal(id, nombre, fechaNacimiento, direccion, nivelEdu, situacionEco) {
             // Asigna los valores a los campos del modal

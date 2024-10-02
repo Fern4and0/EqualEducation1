@@ -42,7 +42,6 @@ $conn->close();  // Cierra la conexión a la base de datos
             <a href="Informes.php">Informes</a> <!-- Enlace a la página de informes -->
             <a href="Beneficiarios.php">Beneficiarios</a> <!-- Enlace a la página de beneficiarios -->
             <a href="Donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
-            <a href="#" id="solicitudes-btn"><i class="icon-solicitudes"></i> Solicitudes</a> <!-- Enlace para ver solicitudes -->
             <a href="../Login/Logout.php" class="logout-btn">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
         </div>
     </div>
