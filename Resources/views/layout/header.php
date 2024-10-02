@@ -27,7 +27,7 @@ session_start(); // Iniciamos la sesión
                         <a class="nav-link" href="/EqualEducation/Resources/views/login.html">Inicia Sesión</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Resources/views/modals.php">Únete</a>
+                        <a class="nav-link" href="Resources/views/Modals.php">Únete</a>
                     </li>
                 <?php else: ?>
                     <!-- Mostrar "Cerrar Sesión" si el usuario está logueado -->
