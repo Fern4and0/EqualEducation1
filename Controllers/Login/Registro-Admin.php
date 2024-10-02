@@ -1,5 +1,5 @@
 <?php
-// Controllers/Registro.php
+// Controllers/Registro-Admin.php
 
 // Incluimos la conexión a la base de datos
 include '../../DB/DB.php';
@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email']; // Recoge el email del formulario
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hasheamos la contraseña usando BCRYPT
 
-    // Asignar id_rol por defecto
-    $id_rol = 2; // Por ejemplo, rol de usuario común
+    // Asignar id_rol para el administrador
+    $id_rol = 1; // Por ejemplo, rol de administrador
 
     // Inserta los datos en la base de datos
     $sql = "INSERT INTO users (nombre, email, password, id_rol) VALUES ('$nombre', '$email', '$password', '$id_rol')";
@@ -27,11 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_name'] = $nombre; // Guarda el nombre del usuario en la sesión
         $_SESSION['user_email'] = $email; // Guarda el email del usuario en la sesión
         $_SESSION['user_role'] = $id_rol; // Guarda el rol del usuario en la sesión
-        $_SESSION['registered_email'] = $email; // Guarda el email registrado en la sesión
-        $_SESSION['registered_password'] = $_POST['password']; // Guarda la contraseña registrada en la sesión
 
         // Redirigir al dashboard
-        header('Location: ../../inicio.php');
+        header('Location: ../../Controllers/Dashboard/Dashboard.php');
         exit();
     } else {
         // Muestra un mensaje de error si la consulta falló

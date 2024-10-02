@@ -1,6 +1,4 @@
 <?php
-// Controllers/login.php
-
 session_start(); // Iniciamos la sesión
 
 include '../../DB/DB.php'; // Incluimos la conexión a la base de datos
@@ -8,6 +6,7 @@ include '../../DB/DB.php'; // Incluimos la conexión a la base de datos
 if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verificamos si la solicitud es de tipo POST
     $email = $_POST['email']; // Obtenemos el email del formulario
     $password = $_POST['password']; // Obtenemos el password del formulario
+    $userRole = $_POST['role']; // Obtenemos el rol seleccionado del formulario
 
     // Consulta para verificar si el usuario existe
     $sql = "SELECT * FROM users WHERE email='$email'"; // Preparamos la consulta SQL
@@ -24,8 +23,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verificamos si la solicitud es de
             $_SESSION['user_email'] = $user['email']; // Guardamos el email del usuario en la sesión
             $_SESSION['user_rol'] = $user['id_rol']; // Guardamos el rol del usuario en la sesión
 
-            // Redirigir al dashboard
-            header("Location: ../Dashboard/Dashboard.php"); // Redirigimos al usuario al dashboard
+            // Verificamos si el rol coincide con lo esperado y redirigimos
+            if ($userRole == 'admin' && $user['id_rol'] == 1) { // Si seleccionaron admin y el usuario es admin
+                header("Location: ../Dashboard/Dashboard.php"); // Redirigimos al dashboard
+            } elseif ($userRole == 'user' && $user['id_rol'] == 2) { // Si seleccionaron usuario y el rol es de usuario
+                header("Location: ../../Inicio.php"); // Redirigimos a la página de inicio
+            } else {
+                // Si intentan acceder con rol incorrecto, redirigimos a Inicio
+                header("Location: ../../Inicio.php");
+            }
             exit(); // Terminamos la ejecución del script
         } else {
             $error = "Contraseña incorrecta."; // Mensaje de error si el password no coincide
