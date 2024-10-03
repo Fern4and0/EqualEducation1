@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real People, Real Solutions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="resources/css/style_ini.css">
+    <link rel="stylesheet" href="Resources/css/style_ini.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body> 
@@ -24,30 +24,30 @@
 
 <!-- Main Content -->
 <main class="container my-5">
-    <h2 class="text-center mb-4">¡Casi lo logramos! Financia los últimos pocos dólares que necesitan</h2>
+    <h2 class="text-center mb-4">¡Programas y ayudas!</h2>
 
     <div class="row">
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm hover-effect">
-                <img src="img1.jpg" class="card-img-top" alt="Persona 1">
+                <img src="Public/image/img7.jpg" height="250" width="300" class="card-img-top"alt="Programa 1">
                 <div class="card-body">
-                    <p class="card-text">Descripción de la primera persona que necesita financiamiento.</p>
+                    <p class="card-text">Descripcion del programa.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm hover-effect">
-                <img src="img2.jpg" class="card-img-top" alt="Persona 2">
+                <img src="Public/image/img8.jpg"  height="250" width="300" class="card-img-top" alt="Programa 2">
                 <div class="card-body">
-                    <p class="card-text">Descripción de la segunda persona que necesita financiamiento.</p>
+                    <p class="card-text">Descripción del programa.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm hover-effect">
-                <img src="img3.jpg" class="card-img-top" alt="Persona 3">
+                <img src="Public/image/img9.jpg"  height="250" width="300" class="card-img-top" alt="Programa 3">
                 <div class="card-body">
-                    <p class="card-text">Descripción de la tercera persona que necesita financiamiento.</p>
+                    <p class="card-text">Descripción del programa.</p>
                 </div>
             </div>
         </div>

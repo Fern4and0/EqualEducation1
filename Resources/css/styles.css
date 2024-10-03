@@ -6,14 +6,6 @@
     --fuentePrincipal: "Reddit Sans Condensed", sans-serif;
 }
 
-html {
-    box-sizing: border-box;
-    font-size: 62.5%;
-}
-*, *::before, *::after {
-    box-sizing: inherit;
-}
-
 body{
     font-family: var(--fuentePrincipal);
     background-color: #f5f5f5;
@@ -43,11 +35,11 @@ body{
 /* Barra lateral */
 .contenedor{
     display: flex;
-    gap: 3rem;
-    margin: 6rem 10rem 0;
+    gap: 30px;
+    margin: 60px 100px 0;
 }
 .barra-lateral{
-    width: 30rem;
+    width: 300px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -60,7 +52,7 @@ body{
     padding: 1rem 4rem;
     text-decoration: none;
     color: #000;
-    font-size: 2.5rem
+    font-size: 25px
 }
 .barra-lateral__opcion:hover{
     background-color: #e6e6e6;
