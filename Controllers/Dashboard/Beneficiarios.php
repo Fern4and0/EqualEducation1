@@ -191,78 +191,79 @@ $conn->close();
 <head>
     <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la vista para dispositivos móviles -->
-    <title>Beneficiarios Registrados</title> <!-- Título de la página -->
-    <link rel="stylesheet" href="../../Resources/css/Dashboard.css"> <!-- Incluye el archivo CSS -->
-    <script src="../../Resources/JS/Dashboard.js" defer></script> <!-- Incluye el script JS -->
+    <title>Beneficiarios Registrados - Equal Education</title> <!-- Título de la página -->
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../../Resources/css/beneficiarios.css"> <!-- Incluye el archivo CSS -->
+    <script src="../../Resources/js/Dashboard.js" defer></script> <!-- Incluye el script JS modificado -->
+    <script src="../../Resources/js/dash.js" defer></script> <!-- Incluye el script JS modificado -->
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body>
-    <div class="sidebar" id="sidebar"> <!-- Barra lateral -->
-        <div class="toggle-btn" onclick="toggleSidebar()">&#9776;</div> <!-- Botón para mostrar/ocultar la barra lateral -->
-        <div class="menu"> <!-- Menú de navegación -->
-            <a href="Dashboard.php">Inicio</a> <!-- Enlace a la página de inicio -->
-            <a href="usuarios.php">Usuarios</a> <!-- Enlace a la página de usuarios -->
-            <a href="Informes.php">Informes</a> <!-- Enlace a la página de informes -->
-            <a href="Beneficiarios.php">Beneficiarios</a> <!-- Enlace a la página de beneficiarios -->
-            <a href="Donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
-            <a href="#" id="solicitudes-btn"><i class="icon-solicitudes"></i> Solicitudes</a> <!-- Enlace para ver solicitudes -->
-            <a href="../Login/Logout.php" class="logout-btn">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
+    <nav>
+        <div class="logo-name">
+            <span class="logo_name">Equal Education</span>
         </div>
-    </div>
+        
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="Dashboard.php">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Inicio</span>
+                </a></li>
+                <li><a href="usuarios.php">
+                    <i class="uil uil-users-alt"></i>
+                    <span class="link-name">Usuarios</span>
+                </a></li>
+                <li><a href="Informes.php">
+                    <i class="uil uil-file-alt"></i>
+                    <span class="link-name">Informes</span>
+                </a></li>
+                <li><a href="Beneficiarios.php">
+                    <i class="uil uil-user"></i>
+                    <span class="link-name">Beneficiarios</span>
+                </a></li>
+                <li><a href="Donaciones.php">
+                    <i class="uil uil-gift"></i>
+                    <span class="link-name">Donaciones</span>
+                </a></li>
+            </ul>
 
-    <div class="main-content"> <!-- Contenido principal -->
-        <div class="header">
-            <h1>Beneficiarios Registrados</h1> <!-- Título de la sección -->
+            <ul class="logout-mode">
+                <li><a href="../Login/Logout.php" class="logout-btn">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Cerrar Sesión</span>
+                </a></li>
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Modo Oscuro</span>
+                    </a>
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="beneficiarios-table"> <!-- Tabla de beneficiarios -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Dirección</th>
-                        <th>Nivel Educativo</th>
-                        <th>Situación Económica</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($beneficiarios as $beneficiario) : ?>
-                    <tr>
-                        <td><?= $beneficiario['id']; ?></td>
-                        <td><?= htmlspecialchars($beneficiario['nombre'], ENT_QUOTES); ?></td>
-                        <td><?= $beneficiario['fecha_nacimiento']; ?></td>
-                        <td><?= htmlspecialchars($beneficiario['direccion'], ENT_QUOTES); ?></td>
-                        <td><?= htmlspecialchars($beneficiario['nivel_edu'], ENT_QUOTES); ?></td>
-                        <td><?= htmlspecialchars($beneficiario['situacion_eco'], ENT_QUOTES); ?></td>
-                        <td>
-                            <button type="button" class="edit-btn"
-                                onclick="openEditModal(
-                                    <?= $beneficiario['id']; ?>, 
-                                    '<?= htmlspecialchars($beneficiario['nombre'], ENT_QUOTES); ?>', 
-                                    '<?= $beneficiario['fecha_nacimiento']; ?>', 
-                                    '<?= htmlspecialchars($beneficiario['direccion'], ENT_QUOTES); ?>', 
-                                    '<?= htmlspecialchars($beneficiario['nivel_edu'], ENT_QUOTES); ?>', 
-                                    '<?= htmlspecialchars($beneficiario['situacion_eco'], ENT_QUOTES); ?>')">
-                                Editar
-                            </button>
-                            <form method="post" style="display:inline;">
-                                <input type="hidden" name="beneficiario_id" value="<?= $beneficiario['id']; ?>">
-                                <button type="submit" name="eliminar_beneficiario" class="delete-btn">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle" onclick="toggleSidebar()"></i>
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Buscar aquí...">
+            </div>
         </div>
 
-        <!-- Modal de Solicitudes -->
-        <div id="solicitudes-modal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeSolicitudesModal()">&times;</span>
-                <h2>Solicitudes de Beneficios</h2>
+        <div class="main-content">
+            <div class="header">
+                <h1>Beneficiarios Registrados</h1> <!-- Título de la sección -->
+            </div>
+
+            <div class="beneficiarios-table"> <!-- Tabla de beneficiarios -->
                 <table>
                     <thead>
                         <tr>
@@ -272,118 +273,122 @@ $conn->close();
                             <th>Dirección</th>
                             <th>Nivel Educativo</th>
                             <th>Situación Económica</th>
-                            <th>Fecha de Solicitud</th> <!-- Cambiado de "Fecha de Ingreso" a "Fecha de Solicitud" -->
                             <th>Acciones</th>
+                            <th>
+                                <button type="button" class="solicitudes-btn" onclick="openSolicitudesModal()">Solicitudes</button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (count($solicitudes) > 0): ?> <!-- Verifica si hay solicitudes -->
-                            <?php foreach ($solicitudes as $solicitud): ?> <!-- Recorre cada solicitud -->
-                                <tr>
-                                    <td><?= $solicitud['id']; ?></td> <!-- Muestra el ID de la solicitud -->
-                                    <td><?= htmlspecialchars($solicitud['nombre']); ?></td> <!-- Muestra el nombre del solicitante -->
-                                    <td><?= date('d/m/Y', strtotime($solicitud['fecha_nacimiento'])); ?></td> <!-- Muestra la fecha de nacimiento -->
-                                    <td><?= htmlspecialchars($solicitud['direccion']); ?></td> <!-- Muestra la dirección -->
-                                    <td><?= htmlspecialchars($solicitud['nivel_edu']); ?></td> <!-- Muestra el nivel educativo -->
-                                    <td><?= htmlspecialchars($solicitud['situacion_eco']); ?></td> <!-- Muestra la situación económica -->
-                                    <td><?= isset($solicitud['fecha_solicitud']) ? date('d/m/Y', strtotime($solicitud['fecha_solicitud'])) : 'N/A'; ?></td> <!-- Muestra la fecha de solicitud -->
-                                    <td>
-                                        <form method="post" style="display:inline;">
-                                            <input type="hidden" name="solicitud_id" value="<?= $solicitud['id']; ?>">
-                                            <button type="submit" name="aceptar_solicitud" class="accept-btn">Aceptar</button> <!-- Botón para aceptar -->
-                                        </form>
-                                        <form method="post" style="display:inline;">
-                                            <input type="hidden" name="solicitud_id" value="<?= $solicitud['id']; ?>">
-                                            <button type="submit" name="rechazar_solicitud" class="reject-btn">Rechazar</button> <!-- Botón para rechazar -->
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="8">No hay solicitudes de beneficios.</td> <!-- Cambiado de "4" a "8" -->
-                            </tr>
-                        <?php endif; ?>
+                        <?php foreach ($beneficiarios as $beneficiario) : ?>
+                        <tr>
+                            <td><?= $beneficiario['id']; ?></td>
+                            <td><?= htmlspecialchars($beneficiario['nombre'], ENT_QUOTES); ?></td>
+                            <td><?= $beneficiario['fecha_nacimiento']; ?></td>
+                            <td><?= htmlspecialchars($beneficiario['direccion'], ENT_QUOTES); ?></td>
+                            <td><?= htmlspecialchars($beneficiario['nivel_edu'], ENT_QUOTES); ?></td>
+                            <td><?= htmlspecialchars($beneficiario['situacion_eco'], ENT_QUOTES); ?></td>
+                            <td>
+                                <button type="button" class="edit-btn"
+                                    onclick="openEditModal(
+                                        <?= $beneficiario['id']; ?>, 
+                                        '<?= htmlspecialchars($beneficiario['nombre'], ENT_QUOTES); ?>', 
+                                        '<?= $beneficiario['fecha_nacimiento']; ?>', 
+                                        '<?= htmlspecialchars($beneficiario['direccion'], ENT_QUOTES); ?>', 
+                                        '<?= htmlspecialchars($beneficiario['nivel_edu'], ENT_QUOTES); ?>', 
+                                        '<?= htmlspecialchars($beneficiario['situacion_eco'], ENT_QUOTES); ?>')">
+                                    Editar
+                                </button>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="beneficiario_id" value="<?= $beneficiario['id']; ?>">
+                                    <button type="submit" name="eliminar_beneficiario" class="delete-btn">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-        </div>
 
-        <!-- Modal para editar beneficiario -->
-        <div id="editModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" onclick="closeEditModal()">&times;</span>
-                <h2>Editar Beneficiario</h2>
-                <form method="post">
-                    <input type="hidden" name="edit_id" id="edit_id">
-                    <label for="edit_nombre">Nombre:</label>
-                    <input type="text" name="edit_nombre" id="edit_nombre" required><br>
+            <!-- Modal de Solicitudes -->
+            <div id="solicitudes-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeSolicitudesModal()">&times;</span>
+                    <h2>Solicitudes de Beneficios</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Fecha de Nacimiento</th>
+                                <th>Dirección</th>
+                                <th>Nivel Educativo</th>
+                                <th>Situación Económica</th>
+                                <th>Fecha de Solicitud</th>
+                                <th>Acciones</th>
 
-                    <label for="edit_fecha_nacimiento">Fecha de Nacimiento:</label>
-                    <input type="date" name="edit_fecha_nacimiento" id="edit_fecha_nacimiento" required><br>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (count($solicitudes) > 0): ?>
+                                <?php foreach ($solicitudes as $solicitud): ?>
+                                    <tr>
+                                        <td><?= $solicitud['id']; ?></td>
+                                        <td><?= htmlspecialchars($solicitud['nombre']); ?></td>
+                                        <td><?= date('d/m/Y', strtotime($solicitud['fecha_nacimiento'])); ?></td>
+                                        <td><?= htmlspecialchars($solicitud['direccion']); ?></td>
+                                        <td><?= htmlspecialchars($solicitud['nivel_edu']); ?></td>
+                                        <td><?= htmlspecialchars($solicitud['situacion_eco']); ?></td>
+                                        <td><?= isset($solicitud['fecha_solicitud']) ? date('d/m/Y', strtotime($solicitud['fecha_solicitud'])) : 'N/A'; ?></td>
+                                        <td>
+                                            <form method="post" style="display:inline;">
+                                                <input type="hidden" name="solicitud_id" value="<?= $solicitud['id']; ?>">
+                                                <button type="submit" name="aceptar_solicitud" class="accept-btn">Aceptar</button>
+                                            </form>
+                                            <form method="post" style="display:inline;">
+                                                <input type="hidden" name="solicitud_id" value="<?= $solicitud['id']; ?>">
+                                                <button type="submit" name="rechazar_solicitud" class="reject-btn">Rechazar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="8">No hay solicitudes de beneficios.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-                    <label for="edit_direccion">Dirección:</label>
-                    <input type="text" name="edit_direccion" id="edit_direccion" required><br>
+            <!-- Modal para editar beneficiario -->
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeEditModal()">&times;</span>
+                    <h2>Editar Beneficiario</h2>
+                    <form method="post">
+                        <input type="hidden" name="edit_id" id="edit_id">
+                        <label for="edit_nombre">Nombre:</label>
+                        <input type="text" name="edit_nombre" id="edit_nombre" required><br>
 
-                    <label for="edit_nivel_edu">Nivel Educativo:</label>
-                    <input type="text" name="edit_nivel_edu" id="edit_nivel_edu" required><br>
+                        <label for="edit_fecha_nacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" name="edit_fecha_nacimiento" id="edit_fecha_nacimiento" required><br>
 
-                    <label for="edit_situacion_eco">Situación Económica:</label>
-                    <input type="text" name="edit_situacion_eco" id="edit_situacion_eco" required><br>
+                        <label for="edit_direccion">Dirección:</label>
+                        <input type="text" name="edit_direccion" id="edit_direccion" required><br>
 
-                    <button type="submit" name="editar_beneficiario">Guardar Cambios</button>
-                </form>
+                        <label for="edit_nivel_edu">Nivel Educativo:</label>
+                        <input type="text" name="edit_nivel_edu" id="edit_nivel_edu" required><br>
+
+                        <label for="edit_situacion_eco">Situación Económica:</label>
+                        <input type="text" name="edit_situacion_eco" id="edit_situacion_eco" required><br>
+
+                        <button type="submit" name="guardar_cambios" class="save-btn">Guardar Cambios</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Obtener elementos del DOM
-        const solicitudesBtn = document.getElementById('solicitudes-btn');
-        const solicitudesModal = document.getElementById('solicitudes-modal');
-        const closeBtn = document.querySelector('.close-btn');
-
-        // Mostrar el modal cuando se hace clic en el botón de solicitudes
-        solicitudesBtn.addEventListener('click', () => {
-            solicitudesModal.style.display = 'block';
-        });
-
-        // Cerrar el modal cuando se hace clic en el botón de cerrar
-        closeBtn.addEventListener('click', () => {
-            solicitudesModal.style.display = 'none';
-        });
-
-        // Cerrar el modal cuando se hace clic fuera del contenido del modal
-        window.addEventListener('click', (event) => {
-            if (event.target == solicitudesModal) {
-                solicitudesModal.style.display = 'none';
-            }
-        });
-
-        // Función para abrir el modal de edición y llenar los campos con los datos del beneficiario
-        function openEditModal(id, nombre, fechaNacimiento, direccion, nivelEdu, situacionEco) {
-            // Asigna los valores a los campos del modal
-            document.getElementById('edit_id').value = id;
-            document.getElementById('edit_nombre').value = nombre;
-            document.getElementById('edit_fecha_nacimiento').value = fechaNacimiento;
-            document.getElementById('edit_direccion').value = direccion;
-            document.getElementById('edit_nivel_edu').value = nivelEdu;
-            document.getElementById('edit_situacion_eco').value = situacionEco;
-
-            // Muestra el modal
-            document.getElementById('editModal').style.display = 'block';
-        }
-
-        // Función para cerrar el modal de edición
-        function closeEditModal() {
-            // Oculta el modal
-            document.getElementById('editModal').style.display = 'none';
-        }
-
-        // Función para cerrar el modal de solicitudes
-        function closeSolicitudesModal() {
-            document.getElementById('solicitudes-modal').style.display = 'none';
-        }
-    </script>
+    </section>
 </body>
 </html>

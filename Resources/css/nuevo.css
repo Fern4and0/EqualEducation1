@@ -1,0 +1,860 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+*{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+}
+
+:root{
+        /* ===== Colors ===== */
+        --primary-color: #0E4BF1;
+        --panel-color: #FFF;
+        --text-color: #000;
+        --black-light-color: #707070;
+        --border-color: #e6e5e5;
+        --toggle-color: #DDD;
+        --box1-color: #4DA3FF;
+        --box2-color: #FFE6AC;
+        --box3-color: #E7D1FC;
+        --title-icon-color: #fff;
+        
+        /* ====== Transition ====== */
+        --tran-05: all 0.5s ease;
+        --tran-03: all 0.3s ease;
+        --tran-03: all 0.2s ease;
+}
+
+body{
+        min-height: 100vh;
+        background-color: var(--primary-color);
+}
+body.dark{
+        --primary-color: #3A3B3C;
+        --panel-color: #242526;
+        --text-color: #CCC;
+        --black-light-color: #CCC;
+        --border-color: #4D4C4C;
+        --toggle-color: #FFF;
+        --box1-color: #3A3B3C;
+        --box2-color: #3A3B3C;
+        --box3-color: #3A3B3C;
+        --title-icon-color: #CCC;
+}
+/* === Custom Scroll Bar CSS === */
+::-webkit-scrollbar {
+        width: 8px;
+}
+::-webkit-scrollbar-track {
+        background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+        background: #0b3cc1;
+}
+
+body.dark::-webkit-scrollbar-thumb:hover,
+body.dark .activity-data::-webkit-scrollbar-thumb:hover{
+        background: #3A3B3C;
+}
+
+nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        padding: 10px 14px;
+        background-color: var(--panel-color);
+        border-right: 1px solid var(--border-color);
+        transition: var(--tran-05);
+}
+nav.close{
+        width: 73px;
+}
+nav .logo-name{
+        display: flex;
+        align-items: center;
+}
+nav .logo-image{
+        display: flex;
+        justify-content: center;
+        min-width: 45px;
+}
+nav .logo-image img{
+        width: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+}
+
+nav .logo-name .logo_name{
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--text-color);
+        margin-left: 14px;
+        transition: var(--tran-05);
+}
+nav.close .logo_name{
+        opacity: 0;
+        pointer-events: none;
+}
+nav .menu-items{
+        margin-top: 40px;
+        height: calc(100% - 90px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+}
+.menu-items li{
+        list-style: none;
+}
+.menu-items li a{
+        display: flex;
+        align-items: center;
+        height: 50px;
+        text-decoration: none;
+        position: relative;
+}
+.nav-links li a:hover:before{
+        content: "";
+        position: absolute;
+        left: -7px;
+        height: 5px;
+        width: 5px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+}
+body.dark li a:hover:before{
+        background-color: var(--text-color);
+}
+.menu-items li a i{
+        font-size: 24px;
+        min-width: 45px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--black-light-color);
+}
+.menu-items li a .link-name{
+        font-size: 18px;
+        font-weight: 400;
+        color: var(--black-light-color);    
+        transition: var(--tran-05);
+}
+nav.close li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+}
+.nav-links li a:hover i,
+.nav-links li a:hover .link-name{
+        color: var(--primary-color);
+}
+body.dark .nav-links li a:hover i,
+body.dark .nav-links li a:hover .link-name{
+        color: var(--text-color);
+}
+.menu-items .logout-mode{
+        padding-top: 10px;
+        border-top: 1px solid var(--border-color);
+}
+.menu-items .mode{
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+}
+.menu-items .mode-toggle{
+        position: absolute;
+        right: 14px;
+        height: 50px;
+        min-width: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+}
+.mode-toggle .switch{
+        position: relative;
+        display: inline-block;
+        height: 22px;
+        width: 40px;
+        border-radius: 25px;
+        background-color: var(--toggle-color);
+}
+.switch:before{
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 15px;
+        width: 15px;
+        background-color: var(--panel-color);
+        border-radius: 50%;
+        transition: var(--tran-03);
+}
+body.dark .switch:before{
+        left: 20px;
+}
+
+.dashboard{
+        position: relative;
+        left: 250px;
+        background-color: var(--panel-color);
+        min-height: 100vh;
+        width: calc(100% - 250px);
+        padding: 10px 14px;
+        transition: var(--tran-05);
+}
+nav.close ~ .dashboard{
+        left: 73px;
+        width: calc(100% - 73px);
+}
+.dashboard .top{
+        position: fixed;
+        top: 0;
+        left: 250px;
+        display: flex;
+        width: calc(100% - 250px);
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 14px;
+        background-color: var(--panel-color);
+        transition: var(--tran-05);
+        z-index: 10;
+}
+nav.close ~ .dashboard .top{
+        left: 73px;
+        width: calc(100% - 73px);
+}
+.dashboard .top .sidebar-toggle{
+        font-size: 26px;
+        color: var(--text-color);
+        cursor: pointer;
+}
+.dashboard .top .search-box{
+        position: relative;
+        height: 45px;
+        max-width: 600px;
+        width: 100%;
+        margin: 0 30px;
+}
+.top .search-box input{
+        position: absolute;
+        border: 1px solid var(--border-color);
+        background-color: var(--panel-color);
+        padding: 0 25px 0 50px;
+        border-radius: 5px;
+        height: 100%;
+        width: 100%;
+        color: var(--text-color);
+        font-size: 15px;
+        font-weight: 400;
+        outline: none;
+}
+.top .search-box i{
+        position: absolute;
+        left: 15px;
+        font-size: 22px;
+        z-index: 10;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--black-light-color);
+}
+.top img{
+        width: 40px;
+        border-radius: 50%;
+}
+.dashboard .dash-content{
+        padding-top: 50px;
+}
+.dash-content .title{
+        display: flex;
+        align-items: center;
+        margin: 60px 0 30px 0;
+}
+.dash-content .title i{
+        position: relative;
+        height: 35px;
+        width: 35px;
+        background-color: var(--primary-color);
+        border-radius: 6px;
+        color: var(--title-icon-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+}
+.dash-content .title .text{
+        font-size: 24px;
+        font-weight: 500;
+        color: var(--text-color);
+        margin-left: 10px;
+}
+.dash-content .boxes{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+}
+.dash-content .boxes .box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 12px;
+        width: calc(100% / 3 - 15px);
+        padding: 15px 20px;
+        background-color: var(--box1-color);
+        transition: var(--tran-05);
+}
+.boxes .box i{
+        font-size: 35px;
+        color: var(--text-color);
+}
+.boxes .box .text{
+        white-space: nowrap;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--text-color);
+}
+.boxes .box .number{
+        font-size: 40px;
+        font-weight: 500;
+        color: var(--text-color);
+}
+.boxes .box.box2{
+        background-color: var(--box2-color);
+}
+.boxes .box.box3{
+        background-color: var(--box3-color);
+}
+.dash-content .activity .activity-data{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+}
+.activity .activity-data{
+        display: flex;
+}
+.activity-data .data{
+        display: flex;
+        flex-direction: column;
+        margin: 0 15px;
+}
+.activity-data .data-title{
+        font-size: 20px;
+        font-weight: 500;
+        color: var(--text-color);
+}
+.activity-data .data .data-list{
+        font-size: 18px;
+        font-weight: 400;
+        margin-top: 20px;
+        white-space: nowrap;
+        color: var(--text-color);
+}
+
+@media (max-width: 1000px) {
+        nav{
+                width: 73px;
+        }
+        nav.close{
+                width: 250px;
+        }
+        nav .logo_name{
+                opacity: 0;
+                pointer-events: none;
+        }
+        nav.close .logo_name{
+                opacity: 1;
+                pointer-events: auto;
+        }
+        nav li a .link-name{
+                opacity: 0;
+                pointer-events: none;
+        }
+        nav.close li a .link-name{
+                opacity: 1;
+                pointer-events: auto;
+        }
+        nav ~ .dashboard{
+                left: 73px;
+                width: calc(100% - 73px);
+        }
+        nav.close ~ .dashboard{
+                left: 250px;
+                width: calc(100% - 250px);
+        }
+        nav ~ .dashboard .top{
+                left: 73px;
+                width: calc(100% - 73px);
+        }
+        nav.close ~ .dashboard .top{
+                left: 250px;
+                width: calc(100% - 250px);
+        }
+        .activity .activity-data{
+                overflow-X: scroll;
+        }
+}
+
+@media (max-width: 780px) {
+        .dash-content .boxes .box{
+                width: calc(100% / 2 - 15px);
+                margin-top: 15px;
+        }
+}
+@media (max-width: 560px) {
+        .dash-content .boxes .box{
+                width: 100% ;
+        }
+}
+@media (max-width: 400px) {
+        nav{
+                width: 0px;
+        }
+        nav.close{
+                width: 73px;
+        }
+        nav .logo_name{
+                opacity: 0;
+                pointer-events: none;
+        }
+        nav.close .logo_name{
+                opacity: 0;
+                pointer-events: none;
+        }
+        nav li a .link-name{
+                opacity: 0;
+                pointer-events: none;
+        }
+        nav.close li a .link-name{
+                opacity: 0;
+                pointer-events: none;
+        }
+        nav ~ .dashboard{
+                left: 0;
+                width: 100%;
+        }
+        nav.close ~ .dashboard{
+                left: 73px;
+                width: calc(100% - 73px);
+        }
+        nav ~ .dashboard .top{
+                left: 0;
+                width: 100%;
+        }
+        nav.close ~ .dashboard .top{
+                left: 0;
+                width: 100%;
+        }
+}
+
+/* Main content styles */
+.main-content {
+        margin-top: 60px;
+}
+
+/* Header styles */
+.header h1 {
+        font-size: 28px;
+        color: var(--text-color);
+        margin-bottom: 20px;
+}
+
+/* User table styles */
+.user-table {
+        width: 100%;
+        border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        text-align: left;
+        color: var(--text-color);
+}
+
+.user-table th {
+        background-color: var(--primary-color);
+        color: var(--title-icon-color);
+}
+
+.user-table tr:nth-child(even) {
+        background-color: var(--toggle-color);
+}
+
+.user-table tr:hover {
+        background-color: var(--box1-color);
+}
+
+.user-table .edit-btn, .user-table .delete-btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: var(--tran-03);
+}
+
+.user-table .edit-btn {
+        background-color: var(--box2-color);
+        color: var(--text-color);
+}
+
+.user-table .delete-btn {
+        background-color: var(--box3-color);
+        color: var(--text-color);
+}
+
+.user-table .edit-btn:hover {
+        background-color: var(--box1-color);
+}
+
+.user-table .delete-btn:hover {
+        background-color: var(--primary-color);
+        color: var(--title-icon-color);
+}
+
+/* Modal styles */
+.modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+        background-color: var(--panel-color);
+        padding: 20px;
+        border-radius: 10px;
+        width: 400px;
+        max-width: 90%;
+        position: relative;
+}
+
+.modal-content .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--text-color);
+}
+
+.modal-content h2 {
+        margin-bottom: 20px;
+        color: var(--text-color);
+}
+
+.modal-content label {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--text-color);
+}
+
+.modal-content input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        background-color: var(--panel-color);
+        color: var(--text-color);
+}
+
+.modal-content button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--primary-color);
+        color: var(--title-icon-color);
+        cursor: pointer;
+        transition: var(--tran-03);
+}
+
+.modal-content button:hover {
+        background-color: #0b3cc1;
+}
+
+/* Main content styles */
+.main-content {
+        margin-top: 60px;
+        padding: 20px;
+        background-color: var(--panel-color);
+        border-radius: 10px;
+}
+
+/* Header styles */
+.main-content h1 {
+        font-size: 28px;
+        color: var(--text-color);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+}
+
+.main-content h1 i {
+        margin-right: 10px;
+}
+
+/* Add report section styles */
+.add-report-section {
+        margin-bottom: 40px;
+}
+
+.add-report-section h2 {
+        font-size: 24px;
+        color: var(--text-color);
+        margin-bottom: 20px;
+}
+
+.add-report-section form {
+        display: flex;
+        flex-direction: column;
+}
+
+.add-report-section label {
+        margin-bottom: 5px;
+        color: var(--text-color);
+}
+
+.add-report-section input,
+.add-report-section select {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        background-color: var(--panel-color);
+        color: var(--text-color);
+}
+
+.add-report-section button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--primary-color);
+        color: var(--title-icon-color);
+        cursor: pointer;
+        transition: var(--tran-03);
+}
+
+.add-report-section button:hover {
+        background-color: #0b3cc1;
+}
+
+/* Reports section styles */
+.reports-section {
+        margin-top: 40px;
+}
+
+.reports-section h2 {
+        font-size: 24px;
+        color: var(--text-color);
+        margin-bottom: 20px;
+}
+
+.reports-section form {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+}
+
+.reports-section label {
+        margin-right: 10px;
+        color: var(--text-color);
+}
+
+.reports-section select {
+        padding: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        background-color: var(--panel-color);
+        color: var(--text-color);
+        margin-right: 10px;
+}
+
+.reports-section button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--primary-color);
+        color: var(--title-icon-color);
+        cursor: pointer;
+        transition: var(--tran-03);
+}
+
+.reports-section button:hover {
+        background-color: #0b3cc1;
+}
+
+/* Table styles */
+.reports-section table {
+        width: 100%;
+        border-collapse: collapse;
+}
+
+.reports-section th,
+.reports-section td {
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        text-align: left;
+        color: var(--text-color);
+}
+
+.reports-section th {
+        background-color: var(--primary-color);
+        color: var(--title-icon-color);
+}
+
+.reports-section tr:nth-child(even) {
+        background-color: var(--toggle-color);
+}
+
+.reports-section tr:hover {
+        background-color: var(--box1-color);
+}
+
+/* Modal para editar usuario */
+#modalEditarUsuario {
+        display: flex;
+        justify-content: flex-end auto; /* Mueve el modal hacia la derecha */
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 100; /* Asegura que el modal siempre esté sobre otros elementos */
+        padding-right: 100px; /* Añade padding a la derecha para mover el modal */
+        box-sizing: border-box;
+}
+
+#modalEditarUsuario .modal-content {
+        background-color: var(--panel-color);
+        padding: 20px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 500px; /* Ajusta el tamaño máximo del modal */
+        position: relative;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade un ligero sombreado para darle profundidad */
+}
+
+#modalEditarUsuario .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--text-color);
+}
+
+#modalEditarUsuario h2 {
+        margin-bottom: 20px;
+        color: var(--text-color);
+        text-align: center; /* Centra el título del modal */
+}
+
+#modalEditarUsuario label {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--text-color);
+}
+
+#modalEditarUsuario input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        background-color: var(--panel-color);
+        color: var(--text-color);
+        box-sizing: border-box;
+}
+
+#modalEditarUsuario button {
+        width: 100%; /* Botón ocupa todo el ancho del modal */
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--primary-color);
+        color: var(--title-icon-color);
+        cursor: pointer;
+        transition: var(--tran-03);
+        text-align: center;
+}
+
+#modalEditarUsuario button:hover {
+        background-color: #0b3cc1;
+}
+/* Estilos para el modal */
+.modal {
+display: none; /* Oculta el modal por defecto */
+position: fixed; /* Fija el modal en la pantalla */
+z-index: 1; /* Asegura que el modal esté por encima de otros elementos */
+left: 0; /* Posiciona el modal en el borde izquierdo de la pantalla */
+top: 0; /* Posiciona el modal en el borde superior de la pantalla */
+width: 100%; /* El modal ocupa todo el ancho de la pantalla */
+height: 100%; /* El modal ocupa todo el alto de la pantalla */
+overflow: auto; /* Permite el desplazamiento si el contenido es demasiado grande */
+background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para el modal */
+padding-top: 50px; /* Añade un espacio en la parte superior del modal */
+}
+
+.modal-content {
+background-color: #fff; /* Fondo blanco para el contenido del modal */
+margin: 5% auto; /* Centra el contenido del modal vertical y horizontalmente */
+padding: 20px; /* Añade espacio interno alrededor del contenido */
+border: 1px solid #888; /* Borde gris alrededor del contenido */
+width: 40%; /* El contenido ocupa el 40% del ancho de la pantalla */
+border-radius: 8px; /* Bordes redondeados para el contenido */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra alrededor del contenido */
+}
+
+.close-btn {
+color: #aaa; /* Color gris claro para el botón de cerrar */
+float: right; /* Posiciona el botón de cerrar a la derecha */
+font-size: 28px; /* Tamaño de fuente grande para el botón de cerrar */
+font-weight: bold; /* Fuente en negrita para el botón de cerrar */
+}
+
+.close-btn:hover,
+.close-btn:focus {
+color: black; /* Cambia el color a negro cuando se pasa el ratón o se enfoca */
+text-decoration: none; /* Elimina el subrayado del texto */
+cursor: pointer; /* Cambia el cursor a una mano para indicar que es clicable */
+}
+
+/* Estilos para el formulario de edición */
+.modal-content form input[type="text"],
+.modal-content form input[type="date"] {
+width: calc(100% - 20px); /* El ancho del input es el 100% menos 20px */
+padding: 10px; /* Añade espacio interno dentro del input */
+margin: 10px 0; /* Añade espacio externo arriba y abajo del input */
+border: 1px solid #ccc; /* Borde gris claro para el input */
+border-radius: 4px; /* Bordes redondeados para el input */
+}
+
+.modal-content form button {
+background-color: #4CAF50; /* Fondo verde para el botón */
+color: white; /* Texto blanco para el botón */
+padding: 10px 15px; /* Añade espacio interno dentro del botón */
+border: none; /* Elimina el borde del botón */
+border-radius: 4px; /* Bordes redondeados para el botón */
+cursor: pointer; /* Cambia el cursor a una mano para indicar que es clicable */
+}
+
+.modal-content form button:hover {
+background-color: #45a049; /* Cambia el fondo a un verde más oscuro cuando se pasa el ratón */
+}

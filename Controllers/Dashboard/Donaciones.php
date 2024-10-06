@@ -33,34 +33,83 @@ $conn->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- Define la codificación de caracteres -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la vista para dispositivos móviles -->
-    <title>Donaciones Hechas</title> <!-- Título de la página -->
-    <link rel="stylesheet" href="../../Resources/css/Dashboard.css"> <!-- Incluye el archivo CSS -->
-    <script src="../../Resources/JS/Dashboard.js" defer></script> <!-- Incluye el script JS modificado -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../../Resources/css/nuevo.css"> <!-- Incluye el archivo CSS -->
+    <script src="../../Resources/js/Dashboard.js" defer></script> <!-- Incluye el script JS modificado -->
+    <script src="../../Resources/js/dash.js" defer></script> <!-- Incluye el script JS modificado -->
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Admin Dashboard Panel</title>
 </head>
 <body>
-    <div class="sidebar" id="sidebar"> <!-- Barra lateral -->
-        <div class="toggle-btn" onclick="toggleSidebar()">&#9776;</div> <!-- Botón para mostrar/ocultar la barra lateral -->
-        <div class="menu"> <!-- Menú de navegación -->
-            <a href="Dashboard.php">Inicio</a> <!-- Enlace a la página de inicio -->
-            <a href="usuarios.php">Usuarios</a> <!-- Enlace a la página de usuarios -->
-            <a href="Informes.php">Informes</a> <!-- Enlace a la página de informes -->
-            <a href="Beneficiarios.php">Beneficiarios</a> <!-- Enlace a la página de beneficiarios -->
-            <a href="Donaciones.php">Donaciones</a> <!-- Enlace a la página de donaciones -->
-            <a href="#" id="solicitudes-btn"><i class="icon-solicitudes"></i> Solicitudes</a> <!-- Enlace para ver solicitudes -->
-            <a href="../Login/Logout.php" class="logout-btn">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
+<nav>
+        <div class="logo-name">
+            <span class="logo_name">Equal Education</span>
         </div>
-    </div>
+        <div class="menu-items">
+            <ul class="nav-links">
+                    <li><a href="Dashboard.php">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Inicio</span>
+                    </a></li>
+                    <li><a href="usuarios.php">
+                        <i class="uil uil-users-alt"></i>
+                        <span class="link-name">Usuarios</span>
+                    </a></li>
+                    <li><a href="Informes.php">
+                        <i class="uil uil-file-alt"></i>
+                        <span class="link-name">Informes</span>
+                    </a></li>
+                    <li><a href="Beneficiarios.php">
+                        <i class="uil uil-user"></i>
+                        <span class="link-name">Beneficiarios</span>
+                    </a></li>
+                    <li><a href="Donaciones.php">
+                        <i class="uil uil-gift"></i>
+                        <span class="link-name">Donaciones</span>
+                    </a></li>
+                </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="../Login/Logout.php">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Cerrar Sesión</span>
+                </a></li>
 
-    <div class="main-content"> <!-- Contenido principal -->
-        <div class="header"> <!-- Encabezado -->
-            <h1>Donaciones Hechas</h1>
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="donation-table"> <!-- Tabla de donaciones -->
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+            <!--<img src="images/profile.jpg" alt="">-->
+        </div>
+        <!-- -======== Donaciones pon tu api de paypal adriel ========= -->
+        <div class="donation-table">
             <table>
                 <thead>
                     <tr>
@@ -74,34 +123,31 @@ $conn->close();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (count($donaciones) > 0): ?> <!-- Verifica si hay donaciones -->
-                        <?php foreach ($donaciones as $donacion): ?> <!-- Recorre cada donación -->
+                    <?php if (count($donaciones) > 0): ?>
+                        <?php foreach ($donaciones as $donacion): ?>
                             <tr>
-                                <td><?= $donacion['id']; ?></td> <!-- Muestra el ID de la donación -->
-                                <td><?= htmlspecialchars($donacion['donante']); ?></td> <!-- Muestra el nombre del donante -->
-                                <td><?= "$" . number_format($donacion['monto'], 2); ?></td> <!-- Muestra el monto de la donación -->
-                                <td><?= date('d/m/Y', strtotime($donacion['fecha'])); ?></td> <!-- Muestra la fecha de la donación -->
-                                <td><?= htmlspecialchars($donacion['programa']); ?></td> <!-- Muestra el nombre del programa asociado -->
-                                <td><?= htmlspecialchars($donacion['metodo_pago']); ?></td> <!-- Muestra el método de pago -->
+                                <td><?= $donacion['id']; ?></td>
+                                <td><?= htmlspecialchars($donacion['donante']); ?></td>
+                                <td><?= "$" . number_format($donacion['monto'], 2); ?></td>
+                                <td><?= date('d/m/Y', strtotime($donacion['fecha'])); ?></td>
+                                <td><?= htmlspecialchars($donacion['programa']); ?></td>
+                                <td><?= htmlspecialchars($donacion['metodo_pago']); ?></td>
                                 <td>
-                                    <button class="edit-btn">Editar</button> <!-- Botón para editar la donación -->
-                                    <button class="delete-btn">Eliminar</button> <!-- Botón para eliminar la donación -->
+                                    <button class="edit-btn">Editar</button>
+                                    <button class="delete-btn">Eliminar</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-                    <?php else: ?> <!-- Si no hay donaciones -->
+                    <?php else: ?>
                         <tr>
-                            <td colspan="7">No hay donaciones registradas.</td> <!-- Muestra un mensaje indicando que no hay donaciones -->
+                            <td colspan="7">No hay donaciones registradas.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
         </div>
+    </section>
 
-        <div class="maintenance-message">
-            <h2>Estamos en mantenimiento</h2>
-            <p>Por favor, vuelva más tarde.</p>
-        </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
