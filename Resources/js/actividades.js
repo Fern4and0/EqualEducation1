@@ -20,7 +20,6 @@ window.addEventListener("click", (event) => {
     }
 });
 
-
 actividad.forEach(contenido__actividad =>{
     contenido__actividad.addEventListener("click", () => {
         contenido__actividad.classList.toggle("active");
