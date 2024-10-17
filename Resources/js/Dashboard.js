@@ -84,6 +84,7 @@ function toggleSidebar() {
     // Alternar la clase 'collapsed' para mostrar u ocultar la barra lateral
     sidebar.classList.toggle('collapsed');
 }
+
 // Función para abrir el modal y cargar los datos del beneficiario
 function openModal(id) {
     // Realiza una petición AJAX para obtener los datos del beneficiario
@@ -119,6 +120,7 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
 function openEditModal(id, nombre, fecha_nacimiento, direccion, nivel_edu, situacion_eco, programa_asig) {
     // Rellenar los campos del formulario con los datos del beneficiario
     document.getElementById('beneficiario_id').value = id;
@@ -146,3 +148,63 @@ window.onclick = function(event) {
     }
 }
 
+// Implementación del modo oscuro y la barra lateral
+const body = document.querySelector("body"),
+      modeToggle = body.querySelector(".mode-toggle"),
+      sidebar = body.querySelector("nav"),
+      sidebarToggle = body.querySelector(".sidebar-toggle");
+
+let getMode = localStorage.getItem("mode");
+if(getMode && getMode === "dark"){
+    body.classList.toggle("dark");
+}
+
+let getStatus = localStorage.getItem("status");
+if(getStatus && getStatus === "close"){
+    sidebar.classList.toggle("close");
+}
+
+modeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    if(body.classList.contains("dark")){
+        localStorage.setItem("mode", "dark");
+    }else{
+        localStorage.setItem("mode", "light");
+    }
+});
+
+sidebarToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+    if(sidebar.classList.contains("close")){
+        localStorage.setItem("status", "close");
+    }else{
+        localStorage.setItem("status", "open");
+    }
+});
+
+// Función para abrir el modal de solicitudes
+function openSolicitudesModal() {
+    // Realiza una petición AJAX para obtener los datos de las solicitudes
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "getSolicitudes.php", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var solicitudes = JSON.parse(xhr.responseText);
+            // Aquí puedes procesar los datos de las solicitudes y mostrarlos en el modal
+            // Por ejemplo, rellenar una tabla dentro del modal con los datos obtenidos
+            var solicitudesTable = document.getElementById('solicitudesTable');
+            solicitudesTable.innerHTML = ''; // Limpiar la tabla antes de llenarla
+            solicitudes.forEach(solicitud => {
+                var row = solicitudesTable.insertRow();
+                row.insertCell(0).innerText = solicitud.id;
+                row.insertCell(1).innerText = solicitud.nombre;
+                row.insertCell(2).innerText = solicitud.fecha;
+                // Añadir más celdas según los datos de las solicitudes
+            });
+
+            // Mostrar el modal de solicitudes
+            document.getElementById('solicitudesModal').style.display = 'block';
+        }
+    };
+    xhr.send();
+}

@@ -2,14 +2,13 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: auto;
     font-family: 'Poppins', sans-serif;
 }
 
 :root{
     /* ===== Colors ===== */
-    --primary-color: #0E4BF1;
-    --panel-color: #FFF;
+    --panel-color: #FAEEE0;
     --text-color: #000;
     --black-light-color: #707070;
     --border-color: #e6e5e5;
@@ -54,9 +53,7 @@ body.dark{
     transition: all 0.3s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #0b3cc1;
-}
+
 
 body.dark::-webkit-scrollbar-thumb:hover,
 body.dark .activity-data::-webkit-scrollbar-thumb:hover{
@@ -278,13 +275,13 @@ nav.close ~ .dashboard .top{
     align-items: center;
     margin: 60px 0 30px 0;
 }
-.dash-content .title i{
+.dash-content .title i {
     position: relative;
     height: 35px;
     width: 35px;
-    background-color: var(--primary-color);
+    background-color: #ffefdc;
     border-radius: 6px;
-    color: var(--title-icon-color);
+    color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -306,11 +303,11 @@ nav.close ~ .dashboard .top{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 12px;
     width: calc(100% / 3 - 15px);
     padding: 15px 20px;
     background-color: var(--box1-color);
     transition: var(--tran-05);
+    border-radius: 1px;
 }
 .boxes .box i{
     font-size: 35px;
@@ -459,10 +456,8 @@ nav.close ~ .dashboard .top{
 .main-content {
     width: 90%;
     margin: 50px auto;
-    background-color: #fff;
     padding: 30px;
     border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más grande */
     
 }
 
@@ -482,10 +477,11 @@ nav.close ~ .dashboard .top{
 }
 
 .beneficiarios-table th {
-    background-color: #4CAF50;
+    background-color: #000000;
     color: white;
     font-weight: bold;
     text-transform: uppercase; /* Texto en mayúsculas para los encabezados */
+    border-radius: 3%;
 }
 
 .beneficiarios-table tr:nth-child(even) {
@@ -516,7 +512,7 @@ button:hover {
 }
 
 .solicitudes-btn, .accept-btn, .save-btn {
-    background-color: #4CAF50;
+    background-color: #000000;
     color: white;
 }
 
@@ -550,7 +546,7 @@ button:focus {
 
 .modal-content {
     background-color: #fff;
-    margin: 10% auto;
+    margin: 15% auto;
     padding: 20px;
     border-radius: 8px; /* Bordes redondeados más suaves */
     width: 70%;
@@ -578,4 +574,78 @@ button:focus {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Modal de Solicitudes Styles */
+#solicitudes-modal .modal-content {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff; /* Añadido un color de fondo para el modal */
+}
+
+#solicitudes-modal h2 {
+    text-align: center;
+    color: #000000;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+#solicitudes-modal table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#solicitudes-modal th, #solicitudes-modal td {
+    border: 1px solid #FAEEE0;
+    padding: 4px;
+    text-align: left;
+    background-color: #FFFFFF; /* Color de fondo blanco por defecto para las celdas */
+}
+
+#solicitudes-modal th {
+    background-color: #4CAF50 !important;
+    color: #FAEEE0 !important; /* Forzamos el color correcto */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#solicitudes-modal tr:nth-child(even) {
+    background-color: #FAEEE0 !important; /* Color alterno para filas pares */
+}
+
+#solicitudes-modal tr:hover {
+    background-color: #ddd !important; /* Color más oscuro al hacer hover */
+}
+
+#solicitudes-modal td {
+    font-size: 14px;
+    color: #555;
+}
+
+#solicitudes-modal .accept-btn, #solicitudes-modal .reject-btn {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#solicitudes-modal .accept-btn:hover, #solicitudes-modal .reject-btn:hover {
+    transform: scale(1.05);
+}
+
+#solicitudes-modal .accept-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#solicitudes-modal .reject-btn {
+    background-color: #f44336;
+    color: white;
 }

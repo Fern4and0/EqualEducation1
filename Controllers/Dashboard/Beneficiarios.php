@@ -206,56 +206,48 @@ $conn->close();
         <div class="logo-name">
             <span class="logo_name">Equal Education</span>
         </div>
-        
+
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="Dashboard.php">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Inicio</span>
-                </a></li>
-                <li><a href="usuarios.php">
-                    <i class="uil uil-users-alt"></i>
-                    <span class="link-name">Usuarios</span>
-                </a></li>
-                <li><a href="Informes.php">
-                    <i class="uil uil-file-alt"></i>
-                    <span class="link-name">Informes</span>
-                </a></li>
-                <li><a href="Beneficiarios.php">
-                    <i class="uil uil-user"></i>
-                    <span class="link-name">Beneficiarios</span>
-                </a></li>
-                <li><a href="Donaciones.php">
-                    <i class="uil uil-gift"></i>
-                    <span class="link-name">Donaciones</span>
-                </a></li>
-            </ul>
+                    <li><a href="Dashboard.php">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Inicio</span>
+                    </a></li>
+                    <li><a href="usuarios.php">
+                        <i class="uil uil-users-alt"></i>
+                        <span class="link-name">Usuarios</span>
+                    </a></li>
+                    <li><a href="Informes.php">
+                        <i class="uil uil-file-alt"></i>
+                        <span class="link-name">Informes</span>
+                    </a></li>
+                    <li><a href="Beneficiarios.php">
+                        <i class="uil uil-user"></i>
+                        <span class="link-name">Beneficiarios</span>
+                    </a></li>
+                    <li><a href="Donaciones.php">
+                        <i class="uil uil-gift"></i>
+                        <span class="link-name">Donaciones</span>
+                    </a></li>
+                </ul>
+            
+                <ul class="logout-mode">
+                
 
-            <ul class="logout-mode">
-                <li><a href="../Login/Logout.php" class="logout-btn">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Cerrar Sesión</span>
-                </a></li>
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Modo Oscuro</span>
-                    </a>
+                <li class="mode" style="display: none;">
                     <div class="mode-toggle">
                         <span class="switch"></span>
                     </div>
                 </li>
+            </li>
             </ul>
         </div>
-    </nav>
+    </nav>  
 
     <section class="dashboard">
         <div class="top">
             <i class="uil uil-bars sidebar-toggle" onclick="toggleSidebar()"></i>
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Buscar aquí...">
-            </div>
+           
         </div>
 
         <div class="main-content">
@@ -275,7 +267,7 @@ $conn->close();
                             <th>Situación Económica</th>
                             <th>Acciones</th>
                             <th>
-                                <button type="button" class="solicitudes-btn" onclick="openSolicitudesModal()">Solicitudes</button>
+                                <button type="button" class="modalEdit-btn" onclick="document.getElementById('solicitudes-modal').style.display='block'; closeEditModal()">Editar Modal</button>
                             </th>
                         </tr>
                     </thead>
@@ -326,7 +318,6 @@ $conn->close();
                                 <th>Situación Económica</th>
                                 <th>Fecha de Solicitud</th>
                                 <th>Acciones</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -361,6 +352,12 @@ $conn->close();
                     </table>
                 </div>
             </div>
+
+            <script>
+                function closeSolicitudesModal() {
+                    document.getElementById('solicitudes-modal').style.display = 'none';
+                }
+            </script>
 
             <!-- Modal para editar beneficiario -->
             <div id="editModal" class="modal">

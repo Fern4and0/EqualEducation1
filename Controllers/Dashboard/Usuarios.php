@@ -43,10 +43,9 @@ $conn->close();  // Cierra la conexión a la base de datos
 </head>
 <body>
     <nav>
-    <div class="logo-name">
+        <div class="logo-name">
             <span class="logo_name">Equal Education</span>
         </div>
-
 
         <div class="menu-items">
             <ul class="nav-links">
@@ -72,20 +71,15 @@ $conn->close();  // Cierra la conexión a la base de datos
                     </a></li>
                 </ul>
             
-            <ul class="logout-mode">
-                <li><a href="../Login/Logout.php">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Cerrar Sesión</span>
-                </a></li>
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <a class="link-name">Dark Mode</a>
-                    </a>
+                <ul class="logout-mode">
+                
+
+                <li class="mode" style="display: none;">
                     <div class="mode-toggle">
-                      <span class="switch"></span>
+                        <span class="switch"></span>
                     </div>
                 </li>
+            </li>
             </ul>
         </div>
     </nav>
@@ -94,10 +88,7 @@ $conn->close();  // Cierra la conexión a la base de datos
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
+          
         </div>
 
         <div class="main-content">

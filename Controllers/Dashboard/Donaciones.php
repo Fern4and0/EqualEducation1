@@ -49,10 +49,11 @@ $conn->close();
     <title>Admin Dashboard Panel</title>
 </head>
 <body>
-<nav>
+    <nav>
         <div class="logo-name">
             <span class="logo_name">Equal Education</span>
         </div>
+
         <div class="menu-items">
             <ul class="nav-links">
                     <li><a href="Dashboard.php">
@@ -77,21 +78,14 @@ $conn->close();
                     </a></li>
                 </ul>
             
-            <ul class="logout-mode">
-                <li><a href="../Login/Logout.php">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Cerrar Sesión</span>
-                </a></li>
+                <ul class="logout-mode">
+                
 
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                    <span class="link-name">Dark Mode</span>
-                </a>
-
-                <div class="mode-toggle">
-                  <span class="switch"></span>
-                </div>
+                <li class="mode" style="display: none;">
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
             </li>
             </ul>
         </div>
@@ -101,51 +95,11 @@ $conn->close();
         <div class="top">
             <i class="uil uil-bars sidebar-toggle"></i>
 
-            <div class="search-box">
-                <i class="uil uil-search"></i>
-                <input type="text" placeholder="Search here...">
-            </div>
             
             <!--<img src="images/profile.jpg" alt="">-->
         </div>
         <!-- -======== Donaciones pon tu api de paypal adriel ========= -->
-        <div class="donation-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Donante</th>
-                        <th>Monto</th>
-                        <th>Fecha de Donación</th>
-                        <th>Programa Asociado</th>
-                        <th>Método de Pago</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (count($donaciones) > 0): ?>
-                        <?php foreach ($donaciones as $donacion): ?>
-                            <tr>
-                                <td><?= $donacion['id']; ?></td>
-                                <td><?= htmlspecialchars($donacion['donante']); ?></td>
-                                <td><?= "$" . number_format($donacion['monto'], 2); ?></td>
-                                <td><?= date('d/m/Y', strtotime($donacion['fecha'])); ?></td>
-                                <td><?= htmlspecialchars($donacion['programa']); ?></td>
-                                <td><?= htmlspecialchars($donacion['metodo_pago']); ?></td>
-                                <td>
-                                    <button class="edit-btn">Editar</button>
-                                    <button class="delete-btn">Eliminar</button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="7">No hay donaciones registradas.</td>
-                        </tr>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
+        
     </section>
 
     <script src="script.js"></script>

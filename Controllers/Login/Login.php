@@ -28,6 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verificamos si la solicitud es de
                 header("Location: ../Dashboard/Dashboard.php"); // Redirigimos al dashboard
             } elseif ($userRole == 'user' && $user['id_rol'] == 2) { // Si seleccionaron usuario y el rol es de usuario
                 header("Location: ../../Inicio.php"); // Redirigimos a la página de inicio
+            } elseif (($userRole == 'coordinator' && $user['id_rol'] == 3) || ($userRole == 'coordinator' && $user['id_rol'] == 2)) { // Si seleccionaron coordinador y el rol es de coordinador o usuario
+                header("Location: ../Dashboard/Coordinador.php"); // Redirigimos al dashboard de coordinador
             } else {
                 // Si intentan acceder con rol incorrecto, redirigimos a Inicio
                 header("Location: ../../Inicio.php");

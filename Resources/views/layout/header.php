@@ -16,10 +16,25 @@ session_start(); // Iniciamos la sesión
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Programas</a>
+
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="#">Sobre nosotros</a>
                 </li>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> <!-- Ícono de usuario -->
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Configuración</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/EqualEducation/Controllers/Login/Logout.php">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
 
                 <?php if (!isset($_SESSION['user_id'])): ?>
                     <!-- Mostrar "Inicia Sesión" si no hay sesión activa -->
@@ -29,16 +44,13 @@ session_start(); // Iniciamos la sesión
                     <li class="nav-item">
                         <a class="nav-link" href="Resources/views/Modals.php">Únete</a>
                     </li>
-                <?php else: ?>
-                    <!-- Mostrar "Cerrar Sesión" si el usuario está logueado -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/EqualEducation/Controllers/Login/Logout.php">Cerrar Sesión</a>
-                    </li>
                 <?php endif; ?>
 
                 <li class="nav-item">
                     <a class="btn btn-primary" href="Resources/views/donaciones.php">Donar</a>
                 </li>
+
+                
             </ul>
         </div>
     </div>
