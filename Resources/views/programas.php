@@ -1,62 +1,194 @@
+<?php
+session_start();
+
+include '../../DB/DB.php';
+
+$sql = "SELECT id, nombre, objetivo, fecha_ini, fecha_fin FROM programs ORDER BY fecha_ini ASC";
+$consulta = $conn->query($sql);
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans+Condensed:wght@200..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Resources/css/styles_modal_prgm.css">
-    <link rel="stylesheet" href="/Resources/css/styles_programas.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .donation-header {
+            position: relative;
+            height: 400px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .donation-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(60%);
+        }
+
+        .overlay-text {
+            width: 25rem;
+            text-align: left;
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+
+        .overlay-text h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .program-header {
+            font-weight: bold;
+            font-size: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .subheader {
+            font-size: 1.25rem;
+            margin-bottom: 4rem;
+        }
+
+        .featured-program{
+            margin: 0 auto;
+            width: 65rem;
+            margin-bottom: 2rem;
+            background-color: #fff;
+            padding: 1.5rem;
+            box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.025);
+            border: solid 1.5px rgba(65, 65, 66, 0.2);
+            border-radius: 20px;
+            display: flex;
+        }
+
+        .featured-image {
+            border-radius: 10px;
+            width: 140px;
+            height: 140px;
+        }
+
+        .featured-text {
+            max-height: 5rem;
+            overflow: hidden;
+            position: relative;
+            font-size: 1.1rem;
+            transition: max-height 1s ease;
+        }
+        .featured-text.expanded{
+            max-height: none;
+        }
+
+        .program-info {
+            margin-top: 1rem;
+        }
+        .contenido{
+            margin-left: 1.5rem;
+        }
+
+        .hidden-content {
+            display: none;
+        }
+        .prgm-footer{
+            display: flex;
+            justify-content: space-between;
+        }
+        .unirse{
+            font-family: Arial, Helvetica, sans-serif;
+            display: none;
+            border: none;
+            color: #fff;
+            background-color: #000;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        .show-more{
+            padding: 0;
+            border: none;
+            color: #000;
+            background-color: transparent;
+        }
+    </style>
 </head>
+
 <body>
-<?php include('layout/header.php') ?>
-    <nav class="navegacion-secundaria">
-        <a class="navegacion-secundaria__opcion" href="#">Programas</a>
-        <a class="navegacion-secundaria__opcion" href="#">Cronogramas</a>
-    </nav>
-
-    <main class="contenedor">
-        <div class="programa">
-            <div class="programa-img">
-                <img src="imgs/images.png" alt="imagen del programa">
+    <?php include('layout/header.php'); ?>
+    <div class="container-fluid p-0">
+        <div class="donation-header text-center">
+            <img src="../../Public/image/img11.jpg" alt="Imagen" class="img-fluid">
+            <div class="overlay-text">
+                <h1>Participa en programas gratuitos</h1>
             </div>
-            <div class="programa-texto">
-                <strong>Titulo del programa <br></strong> Curabitur laoreet accumsan eros. Sed a vulputate massa. Aliquam vitae est vitae lorem accumsan faucibus. Duis libero velit,
-                condimentum id dui non, dictum gravida nisi. Proin et odio nibh. Pellentesque habitant morbi tristique senectus et netus et
-                malesuada fames ac turpis egestas. Maecenas ut ante tempor, auctor leo eu, lobortis odio. Phasellus eget sapien at lacus
-                elementum dictum.
-            </div>
-            <div style="font-size: 2rem;"><strong>fecha de inicio</strong></div>
         </div>
-        <button class="btnCrearPrgm" id="openModalBtn">Crear programa<br><i class="bi bi-plus-lg" style="font-size: 3rem;"></i></button>
+    </div>
 
-        <!-- Modal -->
-        <dialog id="modal" class="modal">
-            <form class="modal-content" method="POST">
-                <h2>Crear programa</h2>
-                <label for="nombre">Nombre del programa</label>
-                <input type="text" id="nombre" placeholder="Nombre del programa">
+    <div class="container">
+        <!-- Program header -->
+        <h2 class="program-header text-center">Programas disponibles</h2>
+        <p class="subheader text-center">Participa en nuestros programas educativos gratuitos y abre la puerta a nuevas oportunidades.
+            Aprende nuevas habilidades, mejora tu futuro y conéctate con una comunidad de personas que, como tú, buscan superarse.
+            ¡Es el momento de invertir en ti mismo, sin costo alguno!</p>
+        
+        <?php
+        if ($consulta->num_rows > 0) {
+            // Mostrar los productos en divs
+            while($row = $consulta->fetch_assoc()) {
+                $id = $row['id'];
+                echo "<div class='featured-program'>
+            <div>
+                <img src='https://via.placeholder.com/100' alt='Featured image' class='featured-image'>
+            </div>
+            <div class='contenido'>
+                <h6><strong>" . $row["fecha_ini"] . ' // ' . $row["fecha_fin"] ."</strong></h6>
+                <h4>" . $row["nombre"] . "</h4>
+                <p id='featured-text-$id' class='featured-text'>
+                    " . $row["objetivo"] . "
+                </p>
+                <div class='prgm-footer'><button class='show-more' id='show-more-btn-$id' onclick='toggleText($id)'>Mostrar más +</button>   <button class='unirse' id='unirse-$id'>Unirse      <i class='bi bi-person-add'></i></button></div>
+            </div>
+        </div>";
+            }
+        } else {
+            // Si no hay resultados
+            echo "<p>No hay programas disponibles</p>";
+        }
+        ?>
+        <!-- Featured program -->
+        
+    </div>
 
-                <label for="fecha_ini">Fecha de inicio</label>
-                <input type="date" id="fecha_ini">
+    <script>
+    function toggleText(id) {
+        const featuredText = document.getElementById('featured-text-' + id);
+        const showMoreBtn = document.getElementById('show-more-btn-' + id);
+        const unirse = document.getElementById('unirse-' + id);
+        
+        let isExpanded = featuredText.classList.contains('expanded');
 
-                <label for="fecha_fin">Fecha de conclusión</label>
-                <input type="date" id="fecha_fin">
+        if (isExpanded) {
+            featuredText.classList.remove('expanded');
+            unirse.style.display = "none";
+            showMoreBtn.textContent = "Mostrar más +";
+        } else {
+            featuredText.classList.add('expanded');
+            unirse.style.display = "inline";
+            showMoreBtn.textContent = "Mostrar menos -";
+        }
+    }
+    </script>
 
-                <!--
-                <label for="archivoImagen">Archivo de imagen</label>
-                <input type="file" id="archivoImagen" accept="image/*">
-                -->
-
-                <!-- Botones de acción -->
-                <div class="modal-actions">
-                    <button type="submit" id="createBtn">Crear</button>
-                    <button id="cancelBtn">Cancelar</button>
-                </div>
-            </form>
-        </dialog>
-    </main>
-    <script src="/Resources/js/programas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <?php include('layout/footer.php'); ?>
 </body>
+
 </html>
