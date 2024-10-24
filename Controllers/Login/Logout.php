@@ -1,13 +1,13 @@
 <?php
-// Controllers/logout.php
+session_start(); // Iniciamos la sesión
 
-session_start(); // Inicia la sesión, o reanuda la sesión existente
+// Destruimos todas las variables de sesión
+$_SESSION = [];
 
-// Destruye la sesión
-session_unset(); // Elimina todas las variables de sesión almacenadas
-session_destroy(); // Destruye la sesión actual
+// Destruir la sesión
+session_destroy();
 
-// Redirige al usuario a la página de inicio de sesión
-header("Location: ../../Resources/Views/Login.html"); // Envía una cabecera HTTP para redirigir al usuario a la página de inicio de sesión
-exit(); // Termina la ejecución del script para asegurarse de que no se ejecuta ningún código adicional
+// Redirigir a la página de inicio
+header("Location: /EqualEducation/inicio.php");
+exit(); // Terminamos la ejecución del script
 ?>
