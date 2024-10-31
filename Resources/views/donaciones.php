@@ -14,7 +14,7 @@
     <!-- Header Section -->
     <div class="container-fluid p-0">
         <div class="donation-header text-center">
-            <img src="../../Public/image/img4.jpg" alt="Imagen" class="img-fluid">
+            <img src="../../Public/image/imgDonation.jpg" alt="Imagen" class="img-fluid">
             <div class="overlay-text">
                 <h1>Cambia vidas para siempre</h1>
             </div>
@@ -49,16 +49,24 @@
             },
             onComplete: function(detalles){
                 console.log(detalles);
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "../../Controllers/detallesDonacion.php", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                // Enviar los datos en formato JSON
+                xhr.send(JSON.stringify(detalles));
+
+                // Manejar la respuesta
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log(xhr.responseText);  // Respuesta del servidor
+                    }
+                };
             }
             }).render('#donate-button');
 
             //convertir los detalles de la donacion a json
-            let detallesJSON = JSON.stringify(detalles);
-
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "../../../Controllers/detallesDonacion.php", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send(detallesJSON);
+            
             </script>
         </div>
     </div>

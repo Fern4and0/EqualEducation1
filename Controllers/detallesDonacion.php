@@ -5,10 +5,7 @@ session_start();
 include '../DB/DB.php';
 
 // Recibir los datos JSON
-$detallesJSON = file_get_contents('php://input');
-
-// Convertir la cadena JSON a un objeto PHP
-$detalles = json_decode($detallesJSON);
+$detalles = json_decode(file_get_contents('php://input'), true);
 
 $cantidad = $detalles['amt'];
 

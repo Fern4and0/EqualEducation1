@@ -20,6 +20,11 @@ $conn->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
+        body{
+            background-color: #f5f7fa;
+            font-family: "Noto Sans Display";
+        }
         .donation-header {
             position: relative;
             height: 400px;
@@ -70,6 +75,13 @@ $conn->close();
             border: solid 1.5px rgba(65, 65, 66, 0.2);
             border-radius: 20px;
             display: flex;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .featured-program.show{
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .featured-image {
@@ -186,6 +198,25 @@ $conn->close();
             showMoreBtn.textContent = "Mostrar menos -";
         }
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const featuredPrograms = document.querySelectorAll('.featured-program');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    observer.unobserve(entry.target); // Deja de observar el elemento una vez ha aparecido
+                }
+            });
+        }, {
+            threshold: 0.1 // El 10% del elemento debe ser visible para activarse
+        });
+
+        featuredPrograms.forEach(program => {
+            observer.observe(program);
+        });
+    });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
