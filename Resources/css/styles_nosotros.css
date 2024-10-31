@@ -5,16 +5,116 @@ body{
 
 .contenedor_uno{
     padding: 20px;
-    background-color: #e8e8e8;
+    background-color: #0e2c5c;
+    color: #fff;
 }
 .contenedor_dos{
+    padding: 20px;
+    background-color: #e8e8e8;
+}
+
+.contenedor_tres{
     padding: 20px;
     background-color: #0e2c5c;
     color: #fff;
 }
+
 .texto{
     margin: 0 auto;
     width: 800px;
-    font-size: 20px;
-    text-align: center;
+    font-size: 18px;
+    text-align: justify;
 }
+.desarrolladores{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 19px;
+    margin-top: 10px;
+}
+.contenedor1{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.developer1{
+    display: flex;
+    align-items: flex-start;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    border: solid;
+    border-radius: 2px;
+    border-color: #0e2c5c;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    width: 48%;
+}
+.texto1 {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.developer2{
+    display: flex;
+    align-items: flex-start;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    border: solid;
+    border-radius: 2px;
+    border-color: #0e2c5c;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    width: 48%;
+}
+.texto2 {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.contenedor2{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.developer3{
+    display: flex;
+    align-items: flex-start;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    border: solid;
+    border-radius: 2px;
+    border-color: #0e2c5c;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    width: 48%;
+}
+.texto3 {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.developer4{
+    display: flex;
+    align-items: flex-start;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    border: solid;
+    border-radius: 2px;
+    border-color: #0e2c5c;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    width: 48%;
+}
+.texto4 {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+   
+img{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 40px
+}
+
