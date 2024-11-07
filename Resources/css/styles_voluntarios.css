@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e3e3e3;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.header {
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 0;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+h2 {
+    margin: 0 0 20px 0;
+}
+
+
+.titulo {
+    margin-left: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+h3 {
+    text-align: start;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+p {
+    margin-left: 0px;
+    margin-top: -15px;
+}
+
+.programa {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    width: 100%;
+    margin-left: 90px;
+    margin-top: 20px;
+    display: flex; /* Flex para dividir la imagen y el contenido */
+    align-items: flex-start;
+}
+
+.programa img {
+    width: 200px; 
+    height: auto;
+    border-radius: 5px;
+    margin-right: 20px; 
+}
+
+.programa-contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.acciones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.programa {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    width: 100%;
+    margin-left: 90px;
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+    position: relative; 
+}
+
+select {
+    position: absolute;
+    top: 20px; 
+    right: 10px; 
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.btn-ver {
+    background-color: #32CD32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px; 
+    right: 10px; 
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+}
+.navbar a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #4d4c4c;
+}
+
+.acciones button:hover {
+    background-color: #3b8e3b;
+}
