@@ -1,27 +1,21 @@
-const modal = document.getElementById("modal");
-const openModalBtn = document.getElementById("openModalBtn");
-const closeModalBtn = document.getElementById("closeModalBtn");
-const actividad = document.querySelectorAll(".contenido__actividad");
+const modalCrear = document.getElementById("modal-crear");
+const openCrear = document.getElementById("open-crear");
+const closeCrear = document.getElementById("close-crear");
+
 
 // Abrir la ventana emergente
-openModalBtn.addEventListener("click", () => {
-    modal.style.display = "flex";
+openCrear.addEventListener("click", () => {
+    modalCrear.style.display = "flex";
 });
 
 // Cerrar la ventana emergente
-closeModalBtn.addEventListener("click", () => {
-    modal.style.display = "none";
+closeCrear.addEventListener("click", () => {
+    modalCrear.style.display = "none";
 });
 
 // Cerrar la ventana emergente si se hace clic fuera de ella
 window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-        modal.style.display = "none";
+    if (event.target === modalCrear) {
+        modalCrear.style.display = "none";
     }
 });
-
-actividad.forEach(contenido__actividad =>{
-    contenido__actividad.addEventListener("click", () => {
-        contenido__actividad.classList.toggle("active");
-    })
-})
