@@ -71,8 +71,18 @@ $conn->close(); // Cierra la conexión a la base de datos
                 <li class="nav-item">
                     <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Informes.php' ? 'active' : ''; ?>" href="Informes.php"><i class="fas fa-file-alt"></i> Generación de Informes</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Usuarios.php' ? 'active' : ''; ?>" href="Usuarios.php"><i class="fas fa-users-cog"></i>Usuarios</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsuarios" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-users-cog"></i> Gestión de Usuarios
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownUsuarios">
+                        <a class="dropdown-item" href="Tabla/Administradores.php">Administradores</a>
+                        <a class="dropdown-item" href="Tabla/Coordinador.php">Coordinadores</a>
+                        <a class="dropdown-item" href="Tabla/Beneficiarios.php">Beneficiarios</a>
+                        <a class="dropdown-item" href="Tabla/Voluntarios.php">Voluntarios</a>
+                        <a class="dropdown-item" href="Tabla/Donadores.php">Donadores</a>
+
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -121,6 +131,7 @@ $conn->close(); // Cierra la conexión a la base de datos
     </div>
 
 
+    
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -8,21 +8,32 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 include '../../DB/db.php'; // Incluye la conexión a la base de datos
+require_once __DIR__ . '/../../vendor/autoload.php'; // Incluye la librería de Dompdf
+
+$error_message = '';
 
 // Verifica si se envió el formulario para crear un nuevo informe
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $programa_id = $_POST['programa_id']; // ID del programa asociado
     $tipo = $_POST['tipo']; // Tipo de informe (Impacto o Educativo)
-    $contenido = addslashes(file_get_contents($_FILES['contenido']['tmp_name'])); // Contenido del informe
+    $contenido = ''; // Contenido del informe vacío
 
-    // Inserta el informe en la base de datos
-    $sqlInsertInforme = "INSERT INTO informes (programa_id, tipo, contenido, created_at, updated_at)
-                         VALUES ('$programa_id', '$tipo', '$contenido', NOW(), NOW())";
+    // Verifica si el programa_id existe en la tabla programas
+    $sqlCheckPrograma = "SELECT id FROM programas WHERE id = '$programa_id'";
+    $resultCheckPrograma = $conn->query($sqlCheckPrograma);
 
-    if ($conn->query($sqlInsertInforme) === TRUE) {
-        echo "Informe creado exitosamente.";
+    if ($resultCheckPrograma->num_rows > 0) {
+        // Inserta el informe en la base de datos
+        $sqlInsertInforme = "INSERT INTO informes (programa_id, tipo, contenido, created_at, updated_at)
+                             VALUES ('$programa_id', '$tipo', '$contenido', NOW(), NOW())";
+
+        if ($conn->query($sqlInsertInforme) === TRUE) {
+            echo "Informe creado exitosamente.";
+        } else {
+            echo "Error al crear el informe: {$conn->error}";
+        }
     } else {
-        echo "Error al crear el informe: " . $conn->error;
+        $error_message = "Error: El programa no existe.";
     }
 }
 
@@ -75,35 +86,34 @@ $conn->close();
                     <a class="nav-link" href="Cordi-Dashboard.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="usuarios.php">Usuarios</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestion de Usuarios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoles">
+                            <a class="dropdown-item" href="Tabla/Beneficiarios.php">Beneficiarios</a>
+                            <a class="dropdown-item" href="Tabla/Voluntarios.php">Voluntarios</a>
+                        </div>
+                    </li>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Informes.php">Informes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Beneficiarios.php">Beneficiarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Donaciones.php">Donaciones</a>
+                    <a class="nav-link" href="Donadores.php">Donaciones</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../../Login/Logout.php">Cerrar Sesión</a>
+                        <a class="dropdown-item" href="../Login/Logout.php">Cerrar Sesión</a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container mt-5">
-        <h1 class="mb-4">Gestión de Informes</h1>
-
-        <!-- Botón para abrir el modal de nuevo informe -->
-        <button type="button" class="btn btn-success mb-4" data-toggle="modal" data-target="#nuevoInformeModal">
-            Nuevo Informe
-        </button>
 
         <!-- Modal para crear un nuevo informe -->
         <div class="modal fade" id="nuevoInformeModal" tabindex="-1" role="dialog" aria-labelledby="nuevoInformeModalLabel" aria-hidden="true">
@@ -116,7 +126,7 @@ $conn->close();
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="Informes.php" method="POST" enctype="multipart/form-data">
+                        <form action="Informes.php" method="POST"></form>
                             <div class="form-group">
                                 <label for="programa_id">Programa</label>
                                 <select class="form-control" id="programa_id" name="programa_id" required>
@@ -132,9 +142,9 @@ $conn->close();
                                     <option value="Educativo">Educativo</option>
                                 </select>
                             </div>
-                            <div class="form-group"></div></div>
+                            <div class="form-group">
                                 <label for="contenido">Contenido del Informe</label>
-                                <input type="file" class="form-control-file" id="contenido" name="contenido" required>
+                                <textarea class="form-control" id="contenido" name="contenido" rows="5" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar Informe</button>
                         </form>
@@ -143,11 +153,35 @@ $conn->close();
             </div>
         </div>
 
+        <!-- Modal de error -->
+        <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i> <?php echo $error_message; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Tabla para visualizar los informes -->
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Informes Registrados</h5>
-                <table class="table table-bordered">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">Informes Registrados</h5>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevoInformeModal" title="Nuevo Informe">
+                        <i class="fas fa-file-medical"></i>
+                    </button>
+                </div>
+                <table class="table table-bordered mt-3">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -155,6 +189,7 @@ $conn->close();
                             <th>Tipo</th>
                             <th>Fecha de Creación</th>
                             <th>Ver Informe</th>
+                            <th>Exportar PDF</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -166,11 +201,12 @@ $conn->close();
                                     <td><?php echo $row['tipo']; ?></td>
                                     <td><?php echo $row['created_at']; ?></td>
                                     <td><a href="ver_informe.php?id=<?php echo $row['id']; ?>" class="btn btn-info">Ver</a></td>
+                                    <td><a href="exportar_pdf.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Exportar PDF</a></td>
                                 </tr>
                             <?php endwhile; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="5">No hay informes registrados.</td>
+                                <td colspan="6">No hay informes registrados.</td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
@@ -182,5 +218,12 @@ $conn->close();
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        <?php if (!empty($error_message)): ?>
+            $(document).ready(function() {
+                $('#errorModal').modal('show');
+            });
+        <?php endif; ?>
+    </script>
 </body>
 </html>

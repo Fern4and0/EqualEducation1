@@ -22,7 +22,7 @@ $resultDonadores = $conn->query($sqlDonadores); // Ejecuta la consulta
 $totalDonadores = $resultDonadores->fetch_assoc()['total_donadores']; // Obtiene el resultado de la consulta
 
 // Consulta para obtener la lista de donadores
-$sqlListaDonadores = "SELECT id, nombre, apellido, correo FROM donaciones"; // Ajusta los nombres de columna según tu base de datos
+$sqlListaDonadores = "SELECT id, first_name, last_name, email FROM donaciones"; // Ajusta los nombres de columna según tu base de datos
 $resultListaDonadores = $conn->query($sqlListaDonadores); // Ejecuta la consulta
 
 // Cerrar la conexión a la base de datos
@@ -61,26 +61,28 @@ $conn->close(); // Cierra la conexión a la base de datos
                     <a class="nav-link" href="Cordi-Dashboard.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="usuarios.php">Usuarios</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestion de Usuarios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoles">
+                            <a class="dropdown-item" href="Tabla/Beneficiarios.php">Beneficiarios</a>
+                            <a class="dropdown-item" href="Tabla/Voluntarios.php">Voluntarios</a>
+                        </div>
+                    </li>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Informes.php">Informes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Beneficiarios.php">Beneficiarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Donaciones.php">Donaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Donadores.php">Donadores</a>
+                    <a class="nav-link" href="Donadores.php">Donaciones</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../../Login/Logout.php">Cerrar Sesión</a>
+                        <a class="dropdown-item" href="../Login/Logout.php">Cerrar Sesión</a>
                     </div>
                 </li>
             </ul>
