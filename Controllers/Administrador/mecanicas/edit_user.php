@@ -52,7 +52,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         // Si se ejecuta correctamente, redirige al panel de usuarios
-        header("Location: ../Usuarios.php?msg=Usuario actualizado con éxito");
+        // Redirige a la página correspondiente según el rol del usuario
+        switch ($id_rol) {
+            case 1:
+            header("Location: ../Tabla/Administradores.php");
+            break;
+            case 2:
+            header("Location: ../Tabla/Coordinador.php");
+            break;
+            case 3:
+            header("Location: ../Tabla/Beneficiarios.php");
+            break;
+            case 4:
+            header("Location: ../Tabla/Voluntarios.php");
+            break;
+            case 5:
+            header("Location: ../Tabla/Donadores.php");
+            break;
+            default:
+            header("Location: ../Usuarios.php");
+            break;
+        }
     } else {
         // Si ocurre un error
         echo "Error al actualizar el usuario: {$conn->error}";
