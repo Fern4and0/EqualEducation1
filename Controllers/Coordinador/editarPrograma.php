@@ -17,7 +17,7 @@ $sql = "UPDATE programas SET nombre = '$nombre', fecha_inicio = '$fecha_fin', fe
 
 // Ejecutar la consulta
 if ($conn->query($sql) === TRUE) {
-    header("Location: /EqualEducation/Resources/views/panelCoordi.php");
+    header("Location: /EqualEducation/Controllers/Coordinador/Cordi-Dashboard.php");
     die();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
