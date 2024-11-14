@@ -26,6 +26,9 @@ $sqlBeneficiarios = "SELECT COUNT(*) AS total_beneficiarios FROM beneficiarios";
 $resultBeneficiarios = $conn->query($sqlBeneficiarios); // Ejecuta la consulta
 $totalBeneficiarios = $resultBeneficiarios->fetch_assoc()['total_beneficiarios']; // Obtiene el resultado de la consulta
 
+$sql = "SELECT id, nombre, descripcion, fecha_inicio, fecha_final FROM programas WHERE user_id = 2 ORDER BY id"; //cambiar el 2 por el id del coordinador
+$consulta = $conn->query($sql);
+
 // Cerrar la conexión a la base de datos
 $conn->close(); // Cierra la conexión a la base de datos
 ?>
@@ -36,11 +39,15 @@ $conn->close(); // Cierra la conexión a la base de datos
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordinador Dashboard</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../Resources/css/styles_coordinadores.css">
+    <link rel="stylesheet" href="../../Resources/css/styles_modal.css">
     <style>
         body {
             background-color: #f8f9fa;
+            padding: 0 !important;
         }
         .navbar {
             margin-bottom: 20px;
@@ -59,7 +66,7 @@ $conn->close(); // Cierra la conexión a la base de datos
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Cordi-Dashboard.php">Inicio</a>
+                    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Index.php' ? 'active' : ''; ?>" href="../../Resources/views/index.html"><i class="fas fa-home"></i> Inicio</a></a>
                 </li>
                 <li class="nav-item">
                     <li class="nav-item dropdown">
@@ -90,43 +97,120 @@ $conn->close(); // Cierra la conexión a la base de datos
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-user-plus fa-3x mb-3"></i>
-                        <h5 class="card-title">Usuarios Registrados</h5>
-                        <p class="card-text">Total de usuarios registrados.</p>
-                        <span class="number"><?= $totalUsuarios; ?></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-hand-holding-heart fa-3x mb-3"></i>
-                        <h5 class="card-title">Donaciones Hechas</h5>
-                        <p class="card-text">Total de donaciones realizadas.</p>
-                        <span class="number">$<?= number_format($totalDonaciones, 2); ?></span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <i class="fas fa-user fa-3x mb-3"></i>
-                        <h5 class="card-title">Beneficiarios Registrados</h5>
-                        <p class="card-text">Total de beneficiarios registrados.</p>
-                        <span class="number"><?= $totalBeneficiarios; ?></span>
-                    </div>
+    <div class="contenedor-programas">
+    <?php
+        if ($consulta->num_rows > 0) {
+            // Mostrar los productos en divs
+            while($row = $consulta->fetch_assoc()) {
+                $id = $row['id'];
+                echo '
+                <div class="programa">
+                    <img src="../../Public/image/img2.jpeg" alt="Imagen del programa">
+                <div class="programa-contenido">
+                <h3>' . $row["nombre"] . '</h3>
+                <p>' . $row["descripcion"] . '</p>
+                <select name="status" id="status" required>
+                    <option value="inac">Inactivo</option>
+                    <option value="Enprog">En progreso</option>
+                    <option value="Fin">Finalizado</option>
+                </select>
+                <div class="acciones">  
+                    <button class="btn-ver">Ver cronograma</button>
+                    <button id="open-editar-'.$id.'" class="btn-editar" onClick="editarPrgm('.$id.')">Editar</button>
+                    <button id="open-eliminar-'.$id.'" class="btn-eliminar" onClick="eliminarPrgm('.$id.')">Eliminar</button>
                 </div>
             </div>
         </div>
+
+
+        <dialog id="modal-eliminar-'.$id.'" class="modalEliminar">
+            <div class="eliminarContent">
+                <form action="eliminarPrograma.php" method="POST">
+                <input type="hidden" name="id" value="'.$id.'">
+                <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
+                <span>¿Estas seguro que quieres eliminar este programa?</span>
+                <div class="eliminar-footer">
+                    <button id="eliminar" type="submit">Eliminar</button>
+                    <button type="button" id="close-eliminar-'.$id.'">Cancelar</button>
+                </div>
+                </form>
+            </div>
+        </dialog>
+        <dialog id="modal-editar-'.$id.'" class="modalEditar">
+            <div class="editarContent">
+                <h2>Editar programa</h2>
+                <form action="editarPrograma.php" method="POST">
+                    <div class="form-floating mb-3">
+                        <input type="hidden" name="id" value="'.$id.'">
+                        <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
+                        <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com">
+                        <label for="floatingInput">Titulo</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="floatingInput" name="fecha_ini" placeholder="name@example.com">
+                        <label for="floatingInput">Fecha de inicio</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="floatingInput" name="fecha_fin" placeholder="name@example.com">
+                        <label for="floatingInput">Fecha de conclusion</label>
+                    </div>
+                    <div class="form-floating">
+                        <textarea class="form-control" name="descripcion" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                        <label for="floatingTextarea">Descripción</label>
+                    </div>
+                    <!-- Botones para crear o cancelar -->
+                    <div class="modal-footer">
+                        <button id="crear" type="submit">Editar</button>
+                        <button type="button" id="close-editar-'.$id.'">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </dialog>';
+            }
+        } else {
+            // Si no hay resultados
+            echo "<p>No hay programas disponibles</p>";
+        }
+        ?>
     </div>
+    <div class="boton-crear">
+    <button class="crear-act" id="openModalBtn">
+        Crear programa<br>
+        <i style="font-weight: bold; font-size: 30px;" class="bi bi-plus-lg"></i>
+    </button></div>
+    <dialog id="modal" class="modal">
+        <div class="modal-content">
+            <h2>Crear programa</h2>
+            <form action="crearPrograma.php" method="POST">
+                <div class="form-floating mb-3">
+                    <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
+                    <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com">
+                    <label for="floatingInput">Titulo</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="floatingInput" name="fecha_ini" placeholder="name@example.com">
+                    <label for="floatingInput">Fecha de inicio</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="floatingInput" name="fecha_fin" placeholder="name@example.com">
+                    <label for="floatingInput">Fecha de conclusion</label>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control" name="descripcion" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea">Descripción</label>
+                </div>
+                <!-- Botones para crear o cancelar -->
+                <div class="modal-footer">
+                    <button id="crear" type="submit">Crear</button>
+                    <button type="button" id="closeModalBtn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../../Resources/js/programas.js"></script>
 </body>
 </html>
