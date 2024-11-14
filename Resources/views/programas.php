@@ -4,7 +4,7 @@ session_start();
 
 include '../../DB/DB.php';
 
-$sql = "SELECT id, nombre, objetivo, fecha_ini, fecha_fin FROM programs ORDER BY fecha_ini ASC";
+$sql = "SELECT id, nombre, objetivo, fecha_ini, fecha_fin FROM programas ORDER BY fecha_ini ASC";
 $consulta = $conn->query($sql);
 
 $conn->close();
@@ -176,8 +176,6 @@ $conn->close();
             echo "<p>No hay programas disponibles</p>";
         }
         ?>
-        <!-- Featured program -->
-        
     </div>
 
     <script>
