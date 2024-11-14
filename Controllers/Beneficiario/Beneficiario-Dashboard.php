@@ -85,6 +85,8 @@ $conn->close(); // Cierra la conexión a la base de datos
     <div class="container">
 
     <!-- pagina del beneficiarios   -->
+     
+     
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

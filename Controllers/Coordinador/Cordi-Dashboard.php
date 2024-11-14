@@ -62,13 +62,18 @@ $conn->close(); // Cierra la conexión a la base de datos
                     <a class="nav-link" href="Cordi-Dashboard.php">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="usuarios.php">Usuarios</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestion de Usuarios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoles">
+                            <a class="dropdown-item" href="Tabla/Beneficiarios.php">Beneficiarios</a>
+                            <a class="dropdown-item" href="Tabla/Voluntarios.php">Voluntarios</a>
+                        </div>
+                    </li>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Informes.php">Informes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Beneficiarios.php">Beneficiarios</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Donadores.php">Donaciones</a>
@@ -78,7 +83,7 @@ $conn->close(); // Cierra la conexión a la base de datos
                         <i class="fas fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../../Login/Logout.php">Cerrar Sesión</a>
+                        <a class="dropdown-item" href="../Login/Logout.php">Cerrar Sesión</a>
                     </div>
                 </li>
             </ul>
