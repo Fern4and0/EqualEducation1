@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_role'] = $id_rol; // Guarda el rol del usuario en la sesión
 
         // Redirigir al dashboard
-        header('Location: ../../Controllers/Dashboard/Dashboard.php');
+        header('Location: ../../Controllers/Administrador/Administrador-Dashboard.php');
         exit();
     } else {
         // Muestra un mensaje de error si la consulta falló

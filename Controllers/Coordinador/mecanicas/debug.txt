@@ -1,0 +1,12 @@
+Array
+(
+    [nombre] => Edwin Antonio Rodriguez Crisantos
+    [fecha_nacimiento] => 2002-11-08
+    [direccion] => erodriguez@ucol.mx
+    [nivel_edu] => Licenciatura
+    [situacion_eco] => nkdflkamdñfma
+    [motivacion] => lmdañfmañls,dñlasd
+    [id_users] => 6734096e77b69
+    [fecha_de_ingr] => 2024-11-13T03:05
+    [action] => submit_form
+)

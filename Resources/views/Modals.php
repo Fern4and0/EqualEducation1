@@ -72,46 +72,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="../../Controllers/Dashboard/Solicitudes.php" method="POST">
-                        <!-- Nombre Completo -->
-                        <div class="form-group mb-3">
-                            <label for="nombre">Nombre Completo:</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
-                        </div>
+                    <form method="POST" action="../../Controllers/Administrador/mecanicas/solicitudes.php">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" required><br>
 
-                        <!-- Fecha de Nacimiento -->
-                        <div class="form-group mb-3">
-                            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
-                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
-                        </div>
+                        <label for="descripcion">Descripción:</label>
+                        <textarea name="descripcion" required></textarea><br>
 
-                        <!-- Dirección -->
-                        <div class="form-group mb-3">
-                            <label for="direccion">Dirección:</label>
-                            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingresa tu dirección" required>
-                        </div>
+                        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                        <input type="date" name="fecha_nacimiento" required><br>
 
-                        <!-- Nivel Educativo -->
-                        <div class="form-group mb-3">
-                            <label for="nivel_edu">Nivel Educativo:</label>
-                            <input type="text" class="form-control" id="nivel_edu" name="nivel_edu" placeholder="Ingresa tu nivel educativo" required>
-                        </div>
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" name="direccion" required><br>
 
-                        <!-- Situación Económica -->
-                        <div class="form-group mb-3">
-                            <label for="situacion_eco">Situación Económica:</label>
-                            <textarea class="form-control" id="situacion_eco" name="situacion_eco" placeholder="Describe tu situación económica" required></textarea>
-                        </div>
+                        <label for="nivel_educativo">Nivel Educativo:</label>
+                        <input type="text" name="nivel_educativo" required><br>
 
-                        <!-- Fecha de Ingreso -->
-                        <div class="form-group">
-                    <label for="fecha_de_ingr">Fecha de Ingreso:</label>
-                    <input type="datetime-local" id="fecha_de_ingr" name="fecha_de_ingr" placeholder="dd/mm/aaaa --:--" required>
-                    </div>
-                        <!-- Botón de envío -->
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-submit w-100">Enviar Solicitud</button>
-                        </div>
+                        <label for="situacion_economica">Situación Económica:</label>
+                        <input type="text" name="situacion_economica" required><br>
+
+                        <button type="submit">Enviar</button>
                     </form>
                 </div>
             </div>
