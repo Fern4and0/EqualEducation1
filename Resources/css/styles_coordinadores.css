@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+    font-family: "Noto Sans Display";
+    font-size: 15px;
+    background-color: #e3e3e3;
+    margin: 0;
+    padding: 20px;
+}
+
+.panel {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.accion-prog {
+    margin-bottom: -25px;
+    margin-right: -5px;
+}
+
+h2 {
+    margin-top: 0px;
+    font-size: 24px;
+}
+
+h3 {
+    text-align: start;
+    margin-left: 0px;
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+p {
+    margin-left: 0px;
+}
+
+.btn-crear {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    margin-left: 92%;
+}
+
+.titulo {
+    margin-left: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.programa img {
+    width: 200px; 
+    height: auto;
+    border-radius: 5px;
+    margin-right: 20px; 
+}
+
+.programa-contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.acciones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.programa {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    width: 100%;
+    margin-left: 90px;
+    margin-top: 20px;
+    margin-bottom: 20px !important;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    position: relative; 
+}
+
+select {
+    position: absolute;
+    top: 20px; 
+    right: 10px; 
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.btn-ver {
+    background-color: #32CD32;
+    align-self: flex-start; /* Asegura que esté alineado a la izquierda */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px; 
+}
+.btn-editar {
+    background-color: #007BFF; /* azul */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px; 
+    right: 110px; 
+}
+
+.btn-eliminar {
+    background-color: #FF6347; /* rojo */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px; 
+    right: 10px; 
+}
+
+.btn-crear:hover {
+    background-color: #005977;
+}
+
+.acciones .btn-editar:hover {
+    background-color: #014d9e;
+}
+
+.acciones .btn-eliminar:hover {
+    background-color: #ba4b38;
+}
+
+.acciones .btn-ver:hover {
+    background-color: #3b8e3b;
+}
+.crear-act{
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px 20px;
+    padding-bottom: 0;
+}
+.boton-crear{
+    width: 190px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
