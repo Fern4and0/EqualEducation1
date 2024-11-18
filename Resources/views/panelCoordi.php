@@ -66,7 +66,7 @@ $conn->close();
                 <span>¿Estas seguro que quieres eliminar este programa?</span>
                 <div class="eliminar-footer">
                     <button id="eliminar" type="submit">Eliminar</button>
-                    <button id="close-eliminar-'.$id.'">Cancelar</button>
+                    <button type="button" id="close-eliminar-'.$id.'">Cancelar</button>
                 </div>
                 </form>
             </div>
