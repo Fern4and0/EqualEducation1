@@ -16,7 +16,7 @@ $sql = "INSERT INTO programas (nombre, objetivo, descripcion, user_id, fecha_ini
 
 // Ejecutar la consulta
 if ($conn->query($sql) === TRUE) {
-    header("Location: /EqualEducation/Resources/views/panelCoordi.php");
+    header("Location: /EqualEducation/Controllers/Coordinador/Cordi-Dashboard.php");
     die();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
