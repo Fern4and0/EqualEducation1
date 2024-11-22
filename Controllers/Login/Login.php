@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verificamos si la solicitud es de
     $password = $_POST['password']; // Obtenemos el password del formulario
 
     // Preparación de la consulta para evitar inyecciones SQL
-    $sql = "SELECT id, email, password, nombre, id_rol FROM users WHERE email = ?";
+    $sql = "SELECT id, email, password, nombre, id_rol  FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verificamos si la solicitud es de
                     break;
                 default:
                     // Rol desconocido, redirigimos a Inicio
-                    header("Location: ../../Resources/views/index.html");
+                    header("Location: ../../Resources/views/index.php");
             }
             exit(); // Terminamos la ejecución del script
         } else {
