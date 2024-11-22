@@ -14,11 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email']; // Recoge el email del formulario
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Hasheamos la contraseña usando BCRYPT
 
-    // Asignar id_rol por defecto
-    $id_rol = 2; // Por ejemplo, rol de usuario común
+    // Asignar rol_id por defecto
+    $id_rol = 5; // Por ejemplo, rol de usuario común (coordinador, según tus roles)
 
     // Inserta los datos en la base de datos
-    $sql = "INSERT INTO users (nombre, email, password, id_rol) VALUES ('$nombre', '$email', '$password', '$id_rol')";
+    $sql = "INSERT INTO users (nombre, email, direccion, password, id_rol, created_at, updated_at) 
+            VALUES ('$nombre', '$email', 'Los patos', '$password', '$id_rol', NOW(), NOW())";
 
     // Ejecuta la consulta y verifica si fue exitosa
     if ($conn->query($sql) === TRUE) {
