@@ -71,6 +71,9 @@ $conn->close(); // Cierra la conexión a la base de datos
                 <li class="nav-item">
                     <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Informes.php' ? 'active' : ''; ?>" href="Informes.php"><i class="fas fa-file-alt"></i> Generación de Informes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Solicitudes.php' ? 'active' : ''; ?>" href="Mecanicas/Solicitudes.php"><i class="fas fa-tasks"></i>Solicitudes</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsuarios" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-users-cog"></i> Gestión de Usuarios
