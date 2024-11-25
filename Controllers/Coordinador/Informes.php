@@ -60,7 +60,8 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordinador Dashboard</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         body {
@@ -75,44 +76,8 @@ $conn->close();
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Coordinador Dashboard</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="Cordi-Dashboard.php">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Gestion de Usuarios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoles">
-                            <a class="dropdown-item" href="Tabla/Beneficiarios.php">Beneficiarios</a>
-                            <a class="dropdown-item" href="Tabla/Voluntarios.php">Voluntarios</a>
-                        </div>
-                    </li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Informes.php">Informes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Donadores.php">Donaciones</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../Login/Logout.php">Cerrar Sesión</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<?php include 'layout/header.php'; ?>
+
     <div class="container mt-5">
 
         <!-- Modal para crear un nuevo informe -->
@@ -121,15 +86,13 @@ $conn->close();
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="nuevoInformeModalLabel">Crear Nuevo Informe</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form action="Informes.php" method="POST"></form>
+                    <div class="modal-body"></div>
+                        <form action="Informes.php" method="POST">
                             <div class="form-group">
                                 <label for="programa_id">Programa</label>
-                                <select class="form-control" id="programa_id" name="programa_id" required>
+                                <select class="form-control" id="programa_id" name="programa_id" required></select>
                                     <?php foreach ($programas as $id => $nombre): ?>
                                         <option value="<?php echo $id; ?>"><?php echo $nombre; ?></option>
                                     <?php endforeach; ?>
@@ -142,7 +105,7 @@ $conn->close();
                                     <option value="Educativo">Educativo</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group"></div>
                                 <label for="contenido">Contenido del Informe</label>
                                 <textarea class="form-control" id="contenido" name="contenido" rows="5" required></textarea>
                             </div>
@@ -159,9 +122,7 @@ $conn->close();
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="alert alert-danger" role="alert">
@@ -177,7 +138,7 @@ $conn->close();
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="card-title">Informes Registrados</h5>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#nuevoInformeModal" title="Nuevo Informe">
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#nuevoInformeModal" title="Nuevo Informe">
                         <i class="fas fa-file-medical"></i>
                     </button>
                 </div>
@@ -217,7 +178,7 @@ $conn->close();
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         <?php if (!empty($error_message)): ?>
             $(document).ready(function() {
