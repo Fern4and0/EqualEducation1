@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id'])) {
     exit(); // Detiene la ejecución
 }
 
-include '../../DB/db.php'; // Incluye la conexión a la base de datos
+include '../../DB/db.php'; // Incluye la conexión a la base de datos 
 
 // Consulta para obtener el total de usuarios registrados
 $sqlUsuarios = "SELECT COUNT(*) AS total_usuarios FROM users";
@@ -26,9 +26,8 @@ $sqlBeneficiarios = "SELECT COUNT(*) AS total_beneficiarios FROM beneficiarios";
 $resultBeneficiarios = $conn->query($sqlBeneficiarios); // Ejecuta la consulta
 $totalBeneficiarios = $resultBeneficiarios->fetch_assoc()['total_beneficiarios']; // Obtiene el resultado de la consulta
 
-$sql = "SELECT id, nombre, descripcion, fecha_inicio, fecha_final FROM programas WHERE user_id = 2 ORDER BY id"; //cambiar el 2 por el id del coordinador
+$sql = "SELECT id, nombre, descripcion, fecha_ini, fecha_fin, foto, ubicacion, cupo_maximo, tipo, estatus, created_at FROM programas ORDER BY id";
 $consulta = $conn->query($sql);
-
 // Cerrar la conexión a la base de datos
 $conn->close(); // Cierra la conexión a la base de datos
 ?>
@@ -58,155 +57,82 @@ $conn->close(); // Cierra la conexión a la base de datos
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Coordinador Dashboard</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link <?php echo basename($_SERVER['PHP_SELF']) == 'Index.php' ? 'active' : ''; ?>" href="../../Resources/views/index.html"><i class="fas fa-home"></i> Inicio</a></a>
-                </li>
-                <li class="nav-item">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Gestion de Usuarios
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownRoles">
-                            <a class="dropdown-item" href="Tabla/Beneficiarios.php">Beneficiarios</a>
-                            <a class="dropdown-item" href="Tabla/Voluntarios.php">Voluntarios</a>
-                        </div>
-                    </li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Informes.php">Informes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Donadores.php">Donaciones</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../Login/Logout.php">Cerrar Sesión</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<?php include('layout/header.php') ?>
 
-    <div class="contenedor-programas">
-    <?php
-        if ($consulta->num_rows > 0) {
-            // Mostrar los productos en divs
-            while($row = $consulta->fetch_assoc()) {
-                $id = $row['id'];
-                echo '
-                <div class="programa">
-                    <img src="../../Public/image/img2.jpeg" alt="Imagen del programa">
-                <div class="programa-contenido">
-                <h3>' . $row["nombre"] . '</h3>
-                <p>' . $row["descripcion"] . '</p>
-                <select name="status" id="status" required>
-                    <option value="inac">Inactivo</option>
-                    <option value="Enprog">En progreso</option>
-                    <option value="Fin">Finalizado</option>
-                </select>
-                <div class="acciones">  
-                    <button class="btn-ver">Ver cronograma</button>
-                    <button id="open-editar-'.$id.'" class="btn-editar" onClick="editarPrgm('.$id.')">Editar</button>
-                    <button id="open-eliminar-'.$id.'" class="btn-eliminar" onClick="eliminarPrgm('.$id.')">Eliminar</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Total Usuarios</div>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $totalUsuarios; ?></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Total Donaciones</div>
+                    <div class="card-body">
+                        <h5 class="card-title">$<?php echo $totalDonaciones; ?></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">Total Beneficiarios</div>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $totalBeneficiarios; ?></h5>
+                    </div>
                 </div>
             </div>
         </div>
-
-
-        <dialog id="modal-eliminar-'.$id.'" class="modalEliminar">
-            <div class="eliminarContent">
-                <form action="eliminarPrograma.php" method="POST">
-                <input type="hidden" name="id" value="'.$id.'">
-                <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
-                <span>¿Estas seguro que quieres eliminar este programa?</span>
-                <div class="eliminar-footer">
-                    <button id="eliminar" type="submit">Eliminar</button>
-                    <button type="button" id="close-eliminar-'.$id.'">Cancelar</button>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Programas</div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Fin</th>
+                                    <th>Ubicación</th>
+                                    <th>Cupo Máximo</th>
+                                    <th>Tipo</th>
+                                    <th>Estatus</th>
+                                    <th>Creado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($row = $consulta->fetch_assoc()): ?>
+                                    <tr>
+                                        <td><?php echo $row['id']; ?></td>
+                                        <td><?php echo $row['nombre']; ?></td>
+                                        <td><?php echo $row['descripcion']; ?></td>
+                                        <td><?php echo $row['fecha_ini']; ?></td>
+                                        <td><?php echo $row['fecha_fin']; ?></td>
+                                        <td><?php echo $row['ubicacion']; ?></td>
+                                        <td><?php echo $row['cupo_maximo']; ?></td>
+                                        <td><?php echo $row['tipo']; ?></td>
+                                        <td><?php echo $row['estatus']; ?></td>
+                                        <td><?php echo $row['created_at']; ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                </form>
             </div>
-        </dialog>
-        <dialog id="modal-editar-'.$id.'" class="modalEditar">
-            <div class="editarContent">
-                <h2>Editar programa</h2>
-                <form action="editarPrograma.php" method="POST">
-                    <div class="form-floating mb-3">
-                        <input type="hidden" name="id" value="'.$id.'">
-                        <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
-                        <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com">
-                        <label for="floatingInput">Titulo</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="floatingInput" name="fecha_ini" placeholder="name@example.com">
-                        <label for="floatingInput">Fecha de inicio</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="floatingInput" name="fecha_fin" placeholder="name@example.com">
-                        <label for="floatingInput">Fecha de conclusion</label>
-                    </div>
-                    <div class="form-floating">
-                        <textarea class="form-control" name="descripcion" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                        <label for="floatingTextarea">Descripción</label>
-                    </div>
-                    <!-- Botones para crear o cancelar -->
-                    <div class="modal-footer">
-                        <button id="crear" type="submit">Editar</button>
-                        <button type="button" id="close-editar-'.$id.'">Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </dialog>';
-            }
-        } else {
-            // Si no hay resultados
-            echo "<p>No hay programas disponibles</p>";
-        }
-        ?>
+        </div>
     </div>
-    <div class="boton-crear">
-    <button class="crear-act" id="openModalBtn">
-        Crear programa<br>
-        <i style="font-weight: bold; font-size: 30px;" class="bi bi-plus-lg"></i>
-    </button></div>
-    <dialog id="modal" class="modal">
-        <div class="modal-content">
-            <h2>Crear programa</h2>
-            <form action="crearPrograma.php" method="POST">
-                <div class="form-floating mb-3">
-                    <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
-                    <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com">
-                    <label for="floatingInput">Titulo</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="floatingInput" name="fecha_ini" placeholder="name@example.com">
-                    <label for="floatingInput">Fecha de inicio</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="floatingInput" name="fecha_fin" placeholder="name@example.com">
-                    <label for="floatingInput">Fecha de conclusion</label>
-                </div>
-                <div class="form-floating">
-                    <textarea class="form-control" name="descripcion" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                    <label for="floatingTextarea">Descripción</label>
-                </div>
-                <!-- Botones para crear o cancelar -->
-                <div class="modal-footer">
-                    <button id="crear" type="submit">Crear</button>
-                    <button type="button" id="closeModalBtn">Cancelar</button>
-                </div>
-            </form>
-        </div>
-    </dialog>
+
+
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
