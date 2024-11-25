@@ -10,22 +10,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 include '../../DB/db.php'; // Incluye la conexión a la base de datos
-
-// Consulta para obtener el total de usuarios registrados
-$sqlUsuarios = "SELECT COUNT(*) AS total_usuarios FROM users";
-$resultUsuarios = $conn->query($sqlUsuarios); // Ejecuta la consulta
-$totalUsuarios = $resultUsuarios->fetch_assoc()['total_usuarios']; // Obtiene el resultado de la consulta
-
-// Consulta para obtener las donaciones totales
-$sqlDonaciones = "SELECT COALESCE(SUM(monto), 0) AS total_donaciones FROM donaciones";
-$resultDonaciones = $conn->query($sqlDonaciones); // Ejecuta la consulta
-$totalDonaciones = $resultDonaciones->fetch_assoc()['total_donaciones']; // Obtiene el resultado de la consulta
-
-// Consulta para obtener la cantidad de beneficiarios registrados
-$sqlBeneficiarios = "SELECT COUNT(*) AS total_beneficiarios FROM beneficiarios";
-$resultBeneficiarios = $conn->query($sqlBeneficiarios); // Ejecuta la consulta
-$totalBeneficiarios = $resultBeneficiarios->fetch_assoc()['total_beneficiarios']; // Obtiene el resultado de la consulta
-
 // Cerrar la conexión a la base de datos
 $conn->close(); // Cierra la conexión a la base de datos
 ?>
@@ -48,10 +32,17 @@ $conn->close(); // Cierra la conexión a la base de datos
         .card {
             margin-bottom: 20px;
         }
+        .seccion {
+            display: none;
+        }
+        .seccion.activa {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+     <!-- Navbar -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Beneficiarios Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -59,34 +50,72 @@ $conn->close(); // Cierra la conexión a la base de datos
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
+                    <a class="nav-link" href="#" onclick="mostrarSeccion('inicio')">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Programas</a>
+                    <a class="nav-link" href="#" onclick="mostrarSeccion('programas')">Programas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Actividades</a>
+                    <a class="nav-link" href="#" onclick="mostrarSeccion('actividades')">Actividades</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Perfil.php">Perfil</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Cerrar Sesión</a>
-                    </div>
+                    <a class="nav-link" href="#" onclick="mostrarSeccion('perfil')">Perfil</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container">
+    <!-- Contenido Dinámico -->
+    <div class="container mt-4">
+        <!-- Inicio -->
+        <div id="inicio" class="seccion activa">
+            <h1>Bienvenido al Dashboard de Beneficiarios</h1>
+            <p>Información general sobre los programas y actividades disponibles.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Programas</h5>
+                            <p>Accede a los programas disponibles.</p>
+                            <a href="#" class="btn btn-primary" onclick="mostrarSeccion('programas')">Ver Programas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Actividades</h5>
+                            <p>Explora las actividades que puedes realizar.</p>
+                            <a href="#" class="btn btn-primary" onclick="mostrarSeccion('actividades')">Ver Actividades</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- pagina del beneficiarios   -->
-     
-     
+        <!-- Programas -->
+   <!-- Main Content -->
+   <div class="container mt-5">
+        <h1 class="text-center">Programas Disponibles</h1>
+        <div class="row">
+        </div>
+      
+
+
+    <!-- Scripts -->
+    <script>
+        function mostrarSeccion(id) {
+            // Ocultar todas las secciones
+            const secciones = document.querySelectorAll('.seccion');
+            secciones.forEach(seccion => seccion.classList.remove('activa'));
+
+            // Mostrar la sección seleccionada
+            const seccionActiva = document.getElementById(id);
+            if (seccionActiva) {
+                seccionActiva.classList.add('activa');
+            }
+        }
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
