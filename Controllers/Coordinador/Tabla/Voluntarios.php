@@ -46,8 +46,8 @@ function getRoleName($id_rol) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voluntarios</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -63,24 +63,26 @@ function getRoleName($id_rol) {
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Coordinador Dashboard</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="../Cordi-Dashboard.php">    Coordinador Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="../Cordi-Dashboard.php">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoles" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Gestion de Usuarios
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRoles" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Gestión de Usuarios
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownRoles">
-                        <a class="dropdown-item" href="Beneficiarios.php">Beneficiarios</a>
-                        <a class="dropdown-item" href="Voluntarios.php">Voluntarios</a>
-                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownRoles">
+                        <li><a class="dropdown-item" href="Beneficiarios.php">Beneficiarios</a></li>
+                        <li><a class="dropdown-item" href="Voluntarios.php">Voluntarios</a></li>
+                    </ul>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Programas.php">Programas</a>
                 <li class="nav-item">
                     <a class="nav-link" href="../Informes.php">Informes</a>
                 </li>
@@ -88,16 +90,17 @@ function getRoleName($id_rol) {
                     <a class="nav-link" href="../Donadores.php">Donaciones</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-user"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../../Login/Logout.php">Cerrar Sesión</a>
-                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="../Login/Logout.php">Cerrar Sesión</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
     </nav>
+
 
     <div class="container"> 
         <div class="row">
@@ -218,9 +221,10 @@ function getRoleName($id_rol) {
         </div>
     </div>
 
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
         // Script para pasar los datos al modal de edición
         $('.edit-btn').on('click', function() {
