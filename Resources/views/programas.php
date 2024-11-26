@@ -4,7 +4,7 @@ session_start();
 
 include '../../DB/DB.php';
 
-$sql = "SELECT id, nombre, objetivo, fecha_ini, fecha_fin FROM programas ORDER BY fecha_ini ASC";
+$sql = "SELECT id, nombre, descripcion ,fecha_ini, fecha_fin, foto FROM programas ORDER BY fecha_ini ASC";
 $consulta = $conn->query($sql);
 
 $conn->close();
@@ -159,13 +159,13 @@ $conn->close();
                 $id = $row['id'];
                 echo "<div class='featured-program'>
             <div>
-                <img src='https://via.placeholder.com/100' alt='Featured image' class='featured-image'>
+                <img src='../../Public/image/" . $row["id"] . ".png' alt='Featured image' class='featured-image'>
             </div>
             <div class='contenido'>
                 <h6><strong>" . $row["fecha_ini"] . ' // ' . $row["fecha_fin"] ."</strong></h6>
                 <h4>" . $row["nombre"] . "</h4>
                 <p id='featured-text-$id' class='featured-text'>
-                    " . $row["objetivo"] . "
+                    " . $row["descripcion"] . "
                 </p>
                 <div class='prgm-footer'><button class='show-more' id='show-more-btn-$id' onclick='toggleText($id)'>Mostrar más +</button>   <button class='unirse' id='unirse-$id'>Unirse      <i class='bi bi-person-add'></i></button></div>
             </div>
