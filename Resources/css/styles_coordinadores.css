@@ -3,7 +3,6 @@ body {
     font-family: "Noto Sans Display";
     font-size: 15px;
     background-color: #e3e3e3;
-    margin: 0;
     padding: 20px;
 }
 
@@ -70,7 +69,7 @@ p {
 
 .acciones {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row-reverse;
     margin-top: 50px;
 }
 
@@ -87,17 +86,7 @@ p {
     margin: 0 auto;
     display: flex;
     align-items: flex-start;
-    position: relative; 
-}
-
-select {
-    position: absolute;
-    top: 20px; 
-    right: 10px; 
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    position: static; 
 }
 
 .btn-ver {
@@ -109,7 +98,7 @@ select {
     padding: 10px 15px;
     font-weight: bold;
     cursor: pointer;
-    position: absolute;
+    position: none;
     bottom: 10px; 
 }
 .btn-editar {
@@ -120,7 +109,7 @@ select {
     padding: 10px 15px;
     font-weight: bold;
     cursor: pointer;
-    position: absolute;
+    position: none;
     bottom: 10px; 
     right: 110px; 
 }
@@ -133,7 +122,7 @@ select {
     padding: 10px 15px;
     font-weight: bold;
     cursor: pointer;
-    position: absolute;
+    position: none;
     bottom: 10px; 
     right: 10px; 
 }
