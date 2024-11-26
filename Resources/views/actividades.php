@@ -7,6 +7,8 @@ include '../../DB/DB.php';
 $sql = "SELECT id, programa_id, nombre, descripcion, fecha FROM actividades WHERE programa_id = 7 ORDER BY id"; //cambiar el programa id
 $consulta = $conn->query($sql);
 
+$fecha_actual = date('Y-m-d');
+
 $conn->close();
 ?>
 
@@ -30,11 +32,11 @@ $conn->close();
                 <form action="../../Controllers/Coordinador/crearAct.php" method="POST">
                     <div class="form-floating mb-3">
                         <input type="hidden" name="programa_id" value="7"> <!-- Cambiar el value por el id del programa -->
-                        <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com">
+                        <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com" required>
                         <label for="floatingInput">Titulo</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="floatingInput" name="fecha" placeholder="name@example.com">
+                        <input type="date" class="form-control" id="floatingInput" name="fecha" placeholder="name@example.com" min="<?php echo $fecha_actual; ?>" required>
                         <label for="floatingInput">Fecha</label>
                     </div>
                     <div class="form-floating">
@@ -69,11 +71,11 @@ $conn->close();
                             <div class="form-floating mb-3">
                                 <input type="hidden" name="id" value="'.$id.'">
                                 <input type="hidden" name="programa_id" value="7">
-                                <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com">
+                                <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com" required>
                                 <label for="floatingInput">Titulo</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="floatingInput" name="fecha" placeholder="name@example.com">
+                                <input type="date" class="form-control" id="floatingInput" name="fecha" placeholder="name@example.com" min="'.$fecha_actual.'" required>
                                 <label for="floatingInput">Fecha</label>
                             </div>
                             <div class="form-floating">
