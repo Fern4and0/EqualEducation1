@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+    background-color: #f3f3f9;
+    font-family: "Noto Sans Display";
+}
+.navbar {
+    margin-bottom: 20px;
+}
+.card {
+    margin-bottom: 20px;
+}
+
+.tarjetas-top{
+    display: flex;
+    gap: 20px;
+}
+.tarjeta{
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(56, 65, 74, 0.15);
+}
