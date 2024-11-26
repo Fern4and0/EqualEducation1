@@ -59,7 +59,7 @@ session_start();
               <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
               <!-- RD Navbar Brand-->
               <div class="rd-navbar-brand">
-                <a href="../views/index.html"><img class="brand-logo-light" src="../Images/logo.png" alt="" width="100" height=""/></a>
+                <a href="../views/index.php"><img class="brand-logo-light" src="../Images/logo.png" alt="" width="100" height=""/></a>
               </div>
             </div>
             <div class="rd-navbar-main-element">
@@ -67,8 +67,9 @@ session_start();
                 <!-- RD Navbar Nav-->
                 <ul class="rd-navbar-nav">
                   <li class="rd-nav-item active"><a class="rd-nav-link" href="../views/index.php">Inicio</a></li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="#">Programas</a></li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="../views/programas.php">Programas</a></li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="../views/nosotros.html">Sobre nosotros</a></li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="../views/Modals.php">Unete</a></li>
                   <?php if (!isset($_SESSION['user_id'])): ?>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="../views/login.html">Iniciar sesión</a></li>
                   <?php else: ?>
@@ -107,7 +108,7 @@ session_start();
                             break;
                     }
                       ?>
-                      <a class="dropdown-item" href="<?php echo $dashboard_url; ?>">Mi Tablero</a>
+                      <a class="dropdown-item" href="../../Controllers/Administrador/Administrador-Dashboard.php">Mi Tablero</a>
                       <a class="dropdown-item" href="/EqualEducation/Controllers/Login/Logout.php">Cerrar Sesión</a>
                       </div>
                       </div>
@@ -205,10 +206,10 @@ session_start();
         <div class="col-md-6 col-lg-4 wow-outer">
           <div class="wow fadeInUp">
             <article class="box-causes">
-              <div class="box-causes-img"><img src="../../Public/image/img6.jpg" alt="" width="372" height="396"/><a class="button button-sm button-primary" href="../views/donaciones.php">Donate</a>
+              <div class="box-causes-img"><img src="../../Public/image/C1.jpg" alt="" width="372" height="396"/><a class="button button-sm button-primary" href="../views/donaciones.php">Donate</a>
               </div>
               <h4 class="font-weight-medium"><a>Becas para jovenes</a></h4>
-              <p class="box-causes-donate"><span class="box-causes-donate-complete">$20,000</span> de <span>$100,000</span> pesos recaudados para becas dirigidas hacia jovenes en situación de resago educativo
+              <p class="box-causes-donate"><span class="box-causes-donate-complete">$0.00</span> de <span>$20,000</span> pesos recaudados para becas dirigidas hacia jovenes en situación de resago educativo
               </p>
             </article>
           </div>
@@ -216,10 +217,10 @@ session_start();
         <div class="col-md-6 col-lg-4 wow-outer">
           <div class="wow fadeInUp">
             <article class="box-causes">
-              <div class="box-causes-img"><img src="../../Public/image/img6.jpg" alt="" width="372" height="396"/><a class="button button-sm button-primary" href="../views/donaciones.php">Donate</a>
+              <div class="box-causes-img"><img src="../../Public/image/C2.jpg" alt="" width="372" height="396"/><a class="button button-sm button-primary" href="../views/donaciones.php">Donate</a>
               </div>
               <h4 class="font-weight-medium"><a>Apoyo económico a niños</a></h4>
-              <p class="box-causes-donate"><span class="box-causes-donate-complete">$10,000</span> de <span>$30,000</span> pesos recaudados para apoyar económicamente a niños necesitados
+              <p class="box-causes-donate"><span class="box-causes-donate-complete">$0.00</span> de <span>$10,000</span> pesos recaudados para apoyar económicamente a niños necesitados
               </p>
             </article>
           </div>
@@ -227,10 +228,10 @@ session_start();
         <div class="col-md-6 col-lg-4 wow-outer">
           <div class="wow fadeInUp">
             <article class="box-causes">
-              <div class="box-causes-img"><img src="../../Public/image/img6.jpg" alt="" width="372" height="396"/><a class="button button-sm button-primary" href="../views/donaciones.php">Donate</a>
+              <div class="box-causes-img"><img src="../../Public/image/C3.jpg" alt="" width="372" height="396"/><a class="button button-sm button-primary" href="../views/donaciones.php">Donate</a>
               </div>
               <h4 class="font-weight-medium"><a>Apoyo a programas educativos</a></h4>
-              <p class="box-causes-donate"><span class="box-causes-donate-complete">$42,280</span> de <span>$45,000</span> pesos recaudados para apoyar económicamente a programas educativos
+              <p class="box-causes-donate"><span class="box-causes-donate-complete">$0.00</span> de <span>$20,000</span> pesos recaudados para apoyar económicamente a programas educativos
               </p>
             </article>
           </div>
@@ -243,12 +244,11 @@ session_start();
     <div class="container wow-outer">
       <div class="wow fadeIn">
         <div class="row row-50 row-lg-60">
-          <div class="col-12"><a href="../views/index.html"><img src="../Images/logo.png" alt="" width="207" height="51"/></a></div>
+          <div class="col-12"><a href="../views/index.php"><img src="../Images/logo.png" alt="" width="207" height="51"/></a></div>
           <div class="col-12">
             <ul class="footer-minimal-nav">
               <li><a href="../views/nosotros.html">Equipo</a></li>
-              <li><a href="#">Términos de servicio</a></li>
-              <li><a href="#">Política de privacidad</a></li>
+              <li><a href="../views/política_privacidad.html">Política de privacidad</a></li>
               <li><a href="../views/contacto.html">Contacto</a></li>
             </ul>
           </div>
