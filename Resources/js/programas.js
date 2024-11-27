@@ -2,7 +2,6 @@ const modal = document.getElementById("modal");
 const openModalBtn = document.getElementById("openModalBtn");
 const closeModalBtn = document.getElementById("closeModalBtn");
 const actividad = document.querySelectorAll(".contenido__actividad");
-const crear = document.getElementById("crear");
 
 // Abrir la ventana emergente
 openModalBtn.addEventListener("click", () => {
@@ -69,13 +68,25 @@ function eliminarPrgm(id){
     });
 }
 
+function crearAct(id){
+    const modalAct = document.getElementById("modal-act-" + id);
+    const openAct = document.getElementById("open-act-" + id);
+    const closeAct = document.getElementById("close-act-" + id);
 
-actividad.forEach(contenido__actividad =>{
-    contenido__actividad.addEventListener("click", () => {
-        contenido__actividad.classList.toggle("active");
-    })
-})
+    // Abrir la ventana emergente
+    openAct.addEventListener("click", () => {
+        modalAct.style.display = "flex";
+    });
 
-crear.addEventListener("click", () => {
-    location.reload();
-});
+    // Cerrar la ventana emergente
+    closeAct.addEventListener("click", () => {
+        modalAct.style.display = "none";
+    });
+
+    // Cerrar la ventana emergente si se hace clic fuera de ella
+    window.addEventListener("click", (event) => {
+        if (event.target === modalAct) {
+            modalAct.style.display = "none";
+        }
+    });
+}
