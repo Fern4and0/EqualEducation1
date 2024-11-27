@@ -11,6 +11,8 @@ if (!isset($_SESSION['user_id'])) {
 
 include '../../DB/db.php'; // Incluye la conexión a la base de datos
 
+$user_id = $_SESSION['user_id'];
+
 // Consulta para obtener el total de usuarios registrados
 $sqlUsuarios = "SELECT COUNT(*) AS total_usuarios FROM users";
 $resultUsuarios = $conn->query($sqlUsuarios); // Ejecuta la consulta
@@ -114,6 +116,7 @@ $conn->close(); // Cierra la conexión a la base de datos
                 <div class="acciones">  
                     <button id="open-eliminar-'.$id.'" class="btn-eliminar" onClick="eliminarPrgm('.$id.')">Eliminar</button>
                     <button id="open-editar-'.$id.'" class="btn-editar" onClick="editarPrgm('.$id.')">Editar</button>
+                    <button id="open-act-'.$id.'" class="btn-act" onClick="crearAct('.$id.')">Crear actividad</button>
                 </div>
             </div>
         </div>
@@ -123,7 +126,6 @@ $conn->close(); // Cierra la conexión a la base de datos
             <div class="eliminarContent">
                 <form action="eliminarPrograma.php" method="POST">
                 <input type="hidden" name="id" value="'.$id.'">
-                <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
                 <span>¿Estas seguro que quieres eliminar este programa?</span>
                 <div class="eliminar-footer">
                     <button id="eliminar" type="submit">Eliminar</button>
@@ -191,6 +193,49 @@ $conn->close(); // Cierra la conexión a la base de datos
                     </div>
                 </form>
             </div>
+        </dialog>
+        
+        <dialog id="modal-act-'.$id.'" class="modalAct"> 
+            <div class="actContent">
+                <h2>Crear actividad</h2>
+                <form action="crearAct.php" method="POST" enctype="multipart/form-data">
+                    <div class="form-floating mb-3">
+                        <input type="hidden" name="programa_id" value="'.$id.'">
+                        <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
+                        <input class="form-control" id="floatingInput" name="nombre" placeholder="name@example.com" required>
+                        <label for="floatingInput">Titulo</label>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <!-- Input de fecha -->
+                        <div class="form-floating me-2 flex-grow-1">
+                            <input type="date" class="form-control" id="floatingDate" name="fecha" placeholder="Fecha de inicio" min="'.$fecha_actual.'" required>
+                            <label for="floatingDate">Fecha</label>
+                        </div>
+                        <!-- Input de hora -->
+                        <div class="form-floating">
+                            <input 
+                                type="time" 
+                                class="form-control" 
+                                id="floatingTime" 
+                                name="hora" 
+                                placeholder="Hora de inicio" 
+                                required
+                                min="08:00" 
+                                max="15:00">
+                            <label for="floatingTime">Hora de inicio</label>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" name="descripcion" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                        <label for="floatingTextarea">Descripción</label>
+                    </div>
+                    <!-- Botones para crear o cancelar -->
+                    <div class="modal-footer">
+                        <button id="crear" type="submit">Editar</button>
+                        <button type="button" id="close-act-'.$id.'">Cancelar</button>
+                    </div>
+                </form>
+            </div>
         </dialog>';
             }
         } else {
@@ -209,7 +254,7 @@ $conn->close(); // Cierra la conexión a la base de datos
             <h2>Crear programa</h2>
             <form action="crearPrograma.php" method="POST" enctype="multipart/form-data">
                 <div class="form-floating mb-3">
-                    <input type="hidden" name="user_id" value="2"> <!-- Cambiar el user_id -->
+                    <input type="hidden" name="user_id" value="<?php echo $user_id ?>"> <!-- Cambiar el user_id -->
                     <input class="form-control" id="floatingInput" name="nombre" placeholder="" required>
                     <label for="floatingInput">Titulo</label>
                 </div>
