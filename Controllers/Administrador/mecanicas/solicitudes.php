@@ -54,43 +54,79 @@ $usuarios = obtenerUsuarios();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Usuarios</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         th, td {
-            padding: 10px;
+            padding: 12px 15px;
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #007bff;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
+        tr:nth-child(odd) {
+            background-color: #fff;
+        }
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #e9ecef;
         }
         button {
-            padding: 5px 10px;
+            padding: 8px 12px;
             margin: 2px;
             border: none;
-            background-color: #4CAF50;
-            color: white;
+            border-radius: 4px;
+            font-size: 14px;
             cursor: pointer;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
         }
         button[name="suspender"] {
-            background-color: #f44336;
+            background-color: #dc3545;
+            color: white;
+        }
+        button[name="activar"] {
+            background-color: #28a745;
+            color: white;
         }
         button:hover {
-            opacity: 0.8;
+            opacity: 0.9;
+        }
+        form {
+            display: inline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -107,33 +143,37 @@ $usuarios = obtenerUsuarios();
         exit;
     }
     ?>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $usuarios->fetch_assoc()): ?>
+
+    <div class="container">
+        <div class="title">Listado de Usuarios</div>
+        <table>
+            <thead>
                 <tr>
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['nombre']; ?></td>
-                    <td><?php echo $row['email']; ?></td>
-                    <td><?php echo $row['estatus_cuenta']; ?></td>
-                    <td>
-                        <form method="post">
-                            <input type="hidden" name="id_usuario" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="suspender">Suspender</button>
-                            <button type="submit" name="activar">Activar</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
-            <?php endwhile; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php while ($row = $usuarios->fetch_assoc()): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['id']); ?></td>
+                        <td><?php echo htmlspecialchars($row['nombre']); ?></td>
+                        <td><?php echo htmlspecialchars($row['email']); ?></td>
+                        <td><?php echo htmlspecialchars($row['estatus_cuenta']); ?></td>
+                        <td>
+                            <form method="post">
+                                <input type="hidden" name="id_usuario" value="<?php echo htmlspecialchars($row['id']); ?>">
+                                <button type="submit" name="suspender">Suspender</button>
+                                <button type="submit" name="activar">Activar</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
