@@ -1,32 +1,111 @@
-body {
-    background-color: #f4f4f4;
-    color: #333;
-}
-.hero {
-    background: url('https://via.placeholder.com/1500x500') center center/cover no-repeat;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Estilos personalizados */
+.btn-beneficiario, .btn-voluntario, .btn-coordinador {
+    background-color: #28a745;
     color: white;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    font-size: 1.2em;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 12px 30px;
 }
-.cta-button {
-    background-color: #ff6b6b;
-    color: white;
-    border: none;
+.btn-beneficiario:hover, .btn-voluntario:hover, .btn-coordinador:hover {
+    background-color: #196529;
+    cursor: pointer;
 }
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+
+.btn-close:hover {
+    background-color: #7d7d7d;
 }
-.testimonial-card {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: none;
+
+.btn-close {
+    padding: 5px 10px;
+}
+
+.modal-header, .btn-submit {
+    background-color: #ffffff;
+    color: black;
+}
+
+.btn-submit:hover {
+    background-color: #cdcdcd;
+}
+
+.modal-title {
+    font-size: 1.5em;
+}
+
+.modal-body {
     padding: 20px;
-    background-color: white;
+    background-color: #eae9e9;
 }
-.testimonial-card img {
-    border-radius: 50%;
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.form-control, select, textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    
+}
+
+textarea {
+    height: 100px;
+}
+
+.header {
+    background-image: url('https://via.placeholder.com/1200x600'); 
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+}
+
+.header-content {
+    text-align: center;
+    color: white;
+    padding: 50px;
+}
+
+.header h1 {
+    font-size: 2.5em;
     margin-bottom: 20px;
+}
+
+.header-content button {
+    margin: 10px;
+}
+
+.modal-footer {
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.modal-body h6 {
+    font-size: 1.2em;
+    color: #343a40;
+}
+
+.contenedor {
+    text-align: center;
+    margin: 10px 10px;
+}
+
+.texto {
+    margin: 0 auto; 
+    text-align: justify;
+    font-size: medium;
+    background-color: #edf5fe;
+    border-radius: 5px;
+    padding: 10px;
+    width: 60%; 
 }
