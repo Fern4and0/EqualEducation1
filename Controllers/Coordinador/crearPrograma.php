@@ -26,12 +26,11 @@ $sql = "INSERT INTO programas (nombre, descripcion, fecha_ini, fecha_fin, foto, 
 
 // Ejecutar la consulta
 if ($conn->query($sql) === TRUE) {
-    header("Location: /EqualEducation/Controllers/Coordinador/Cordi-Dashboard.php");
-    die();
     $idimg = $conn->insert_id;
     $rutaFinal = $directorio.$idimg.".".$extensionImagen;
     if(move_uploaded_file($rutaTemporal,$rutaFinal)){
-        echo "imagen guardada";
+        header("Location: /EqualEducation/Controllers/Coordinador/Cordi-Dashboard.php");
+        die();
     }else{
         echo "error al guardar";
     }
