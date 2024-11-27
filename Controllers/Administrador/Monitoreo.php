@@ -58,8 +58,6 @@ $conn->close();
         }
         .dashboard-stat {
             text-align: center;
-            border-radius: 10px;
-            box-shadow: 10px 20px 35px #5557;
         }
         .chart-container {
             position: relative;
@@ -125,7 +123,7 @@ $conn->close();
                     <div class="card-body">
                         <h5 class="card-title">Total Usuarios</h5>
                         <div class="chart-container">
-                            <canvas id="usuariosChart" style="width: 32vw; height: 25vh;"></canvas>
+                            <canvas id="usuariosChart" style="width: 40vw; height: 25vh;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -135,7 +133,7 @@ $conn->close();
                     <div class="card-body">
                         <h5 class="card-title">Total Donaciones</h5>
                         <div class="chart-container">
-                            <canvas id="donacionesChart" style="width: 32vw; height: 25vh;"></canvas>
+                            <canvas id="donacionesChart" style="width: 40vw; height: 25vh;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -148,7 +146,7 @@ $conn->close();
                     <div class="card-body">
                         <h5 class="card-title">Total Beneficiarios</h5>
                         <div class="chart-container">
-                            <canvas id="beneficiariosChart" style="width: 32vw; height: 25vh;"></canvas>
+                            <canvas id="beneficiariosChart" style="width: 40vw; height: 25vh;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -158,7 +156,7 @@ $conn->close();
                     <div class="card-body">
                         <h5 class="card-title">Total Informes Generados</h5>
                         <div class="chart-container">
-                            <canvas id="informesChart" style="width: 32vw; height: 25vh;"></canvas>
+                            <canvas id="informesChart" style="width: 40vw; height: 25vh;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -168,7 +166,7 @@ $conn->close();
                     <div class="card-body">
                         <h5 class="card-title">Total Programas Generados</h5>
                         <div class="chart-container">
-                            <canvas id="programasChart" style="width: 32vw; height: 25vh;"></canvas>
+                            <canvas id="programasChart" style="width: 40vw; height: 25vh;"></canvas>
                         </div>
                     </div>
                 </div>
