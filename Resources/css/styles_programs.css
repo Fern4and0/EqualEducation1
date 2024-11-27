@@ -1,0 +1,247 @@
+ 
+body{
+    background-color: #f5f7fa;         
+}
+.donation-header {
+    position: relative;
+    height: 400px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+.donation-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(60%);
+}
+
+.overlay-text {
+    width: 25rem;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.overlay-text h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+.program-header {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+ .subheader {
+    font-size: 1.25rem;
+    margin-bottom: 4rem;
+}
+
+.featured-program{
+    margin: 0 auto;
+    width: 65rem;
+    margin-bottom: 2rem;
+    background-color: #fff;
+    padding: 1.5rem;
+    box-shadow: 10px 20px 35px #5557;
+    border: solid 1.5px rgba(65, 65, 66, 0.2);
+    border-radius: 20px;
+    display: flex;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.featured-program.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.featured-image {
+    border-radius: 10px;
+    width: 200px;
+    height: 130px;
+}
+
+.featured-text {
+    max-height: 5rem;
+    overflow: hidden;
+    position: relative;
+    font-size: 1.1rem;
+    transition: max-height 1s ease;
+}
+.featured-text.expanded{
+    max-height: none;
+}
+
+.program-info {
+    margin-top: 1rem;
+}
+.contenido{
+    margin-left: 1.5rem;
+}
+.hidden-content {
+    display: none;
+}
+.prgm-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin-top: 60px;
+    margin-bottom: -15px; 
+}
+.unirse{
+    font-family: Arial, Helvetica, sans-serif;
+    display: none;
+    border: none;
+    color: #fff;
+    background-color: #000;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+.show-more{
+    padding: 0;
+    border: none;
+    color: #000;
+    background-color: transparent;
+}
+
+.program-date {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 13px;
+    color: black;
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: block;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 70%;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #ddd;
+}
+
+.modal-section {
+    flex: 1 1 calc(50% - 20px); 
+    border: 1px solid #fff;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 10px 20px 35px #5557;
+}
+
+
+.progress-container {
+    position: relative;
+    height: 20px;
+    width: 100%;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #007bff;
+    width: 0; 
+    transition: width 0.4s ease;
+    border-radius: 5px 0 0 5px;
+}
+
+#modal-cupo-text {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.show-more {
+    background-color: #ddd; 
+    color: black; 
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+.show-more:hover {
+    background-color: #4c4c4c; 
+    color: #f8f9fa; 
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+}
+
+
+.no-scroll {
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Botón unirse */
+.join-button {
+    position: absolute;
+    top: 30px; /* Ajusta esto si es necesario */
+    right: 40px; /* Deja espacio suficiente para el botón cerrar */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.join-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+}
