@@ -3,7 +3,7 @@
 }
 
 /* Estilos para la ventana emergente */
-.modal, .modalEliminar, .modalEditar {
+.modal, .modalEliminar, .modalEditar, .modalAct {
     display: none; /* Oculta la ventana por defecto */
     position: fixed;
     top: 0;
@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.modal-content, .eliminarContent, .editarContent{
+.modal-content, .eliminarContent, .editarContent, .actContent{
     position: absolute;
     font-size: 15px;
     background-color: #f4f4f4;
